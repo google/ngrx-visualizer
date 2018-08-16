@@ -1,0 +1,6 @@
+src/**/*.js
+src/**/*.js.map
+src/**/*.d.ts
+bin/ts
+node_modules
+package-lock.json

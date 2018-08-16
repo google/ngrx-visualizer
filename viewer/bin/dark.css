@@ -1,0 +1,110 @@
+/**
+ * Copyright 2018 The NgRx Visualizer Authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+html,
+body {
+  background-color: #1f1f1f;
+}
+
+a {
+  color: #ff9933;
+}
+
+.sidebar-button {
+  background-color: #000;
+  color: #bbb;
+}
+
+#sidebar-search {
+  background-color: #000;
+  opacity: 0.95;
+  color: #bbb;
+}
+
+#sidebar-visibility {
+  background-color: #000;
+  opacity: 0.8;
+  color: #bbb;
+}
+
+.bottombar-button {
+  background-color: #000;
+  color: #bbb;
+}
+
+#bottombar {
+  background-color: #000;
+  opacity: 0.8;
+  color: #bbb;
+}
+
+#search-results a {
+  color: #bbb;
+}
+
+#settings {
+  background-color: #000;
+}
+
+#settings div {
+  color: #fff;
+}
+
+#settings-exit-button {
+  color: #fff;
+}
+
+.arrow {
+  fill: #bbb;
+}
+
+.nodes circle {
+  stroke: #bbb;
+}
+
+.labelrects rect {
+  fill: #100f02;
+}
+
+.node-label {
+  fill: #bbb;
+}
+
+#loading-dialog {
+  background-color: #000;
+  color: #fff;
+}
+
+#loading-exit-button {
+  color: #fff;
+}
+
+.lds-dual-ring:after {
+  border: 5px solid #fff;
+  border-color: #fff transparent #fff transparent;
+}
+
+.link-status-disabled {
+  stroke: #fff;
+}
+
+.link-status-active-input {
+  stroke: #0ff;
+}
+
+.link-status-active-output {
+  stroke: #ff0;
+}

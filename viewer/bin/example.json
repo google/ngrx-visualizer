@@ -1,0 +1,737 @@
+[
+  {
+    "name": "AuthActionTypes.Login",
+    "filePath": "example-app/app/auth/actions/auth.actions.ts",
+    "line": 11,
+    "references": [
+      {
+        "filePath": "example-app/app/auth/reducers/login-page.reducer.ts",
+        "line": 14,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/auth/containers/login-page.component.ts",
+        "line": 26,
+        "usages": [
+          { "type": "INSTANTIATE" },
+          { "type": "METHOD", "name": "onSubmit" }
+        ]
+      },
+      {
+        "filePath": "example-app/app/auth/effects/auth.effects.ts",
+        "line": 19,
+        "usages": [{ "type": "EFFECT", "name": "login$" }]
+      },
+      {
+        "filePath": "example-app/app/auth/effects/auth.effects.ts",
+        "line": 19,
+        "usages": [{ "type": "EFFECT", "name": "login$" }]
+      },
+      {
+        "filePath": "example-app/app/auth/containers/login-page.component.spec.ts",
+        "line": 59,
+        "usages": [{ "type": "INSTANTIATE" }]
+      },
+      {
+        "filePath": "example-app/app/auth/effects/auth.effects.spec.ts",
+        "line": 51,
+        "usages": [{ "type": "INSTANTIATE" }]
+      },
+      {
+        "filePath": "example-app/app/auth/effects/auth.effects.spec.ts",
+        "line": 64,
+        "usages": [{ "type": "INSTANTIATE" }]
+      },
+      {
+        "filePath": "example-app/app/auth/reducers/auth.reducer.spec.ts",
+        "line": 26,
+        "usages": [{ "type": "INSTANTIATE" }]
+      },
+      {
+        "filePath": "example-app/app/auth/reducers/login-page.reducer.spec.ts",
+        "line": 24,
+        "usages": [{ "type": "INSTANTIATE" }]
+      }
+    ]
+  },
+  {
+    "name": "AuthActionTypes.LoginSuccess",
+    "filePath": "example-app/app/auth/actions/auth.actions.ts",
+    "line": 17,
+    "references": [
+      {
+        "filePath": "example-app/app/auth/reducers/auth.reducer.ts",
+        "line": 15,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/auth/reducers/auth.reducer.ts",
+        "line": 19,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/auth/reducers/login-page.reducer.ts",
+        "line": 22,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/auth/effects/auth.effects.ts",
+        "line": 23,
+        "usages": [
+          { "type": "INSTANTIATE" },
+          { "type": "EFFECT", "name": "login$" }
+        ]
+      },
+      {
+        "filePath": "example-app/app/auth/effects/auth.effects.ts",
+        "line": 31,
+        "usages": [{ "type": "EFFECT", "name": "loginSuccess$" }]
+      },
+      {
+        "filePath": "example-app/app/auth/effects/auth.effects.spec.ts",
+        "line": 52,
+        "usages": [{ "type": "INSTANTIATE" }]
+      },
+      {
+        "filePath": "example-app/app/auth/effects/auth.effects.spec.ts",
+        "line": 80,
+        "usages": [{ "type": "INSTANTIATE" }]
+      },
+      {
+        "filePath": "example-app/app/auth/reducers/auth.reducer.spec.ts",
+        "line": 39,
+        "usages": [{ "type": "INSTANTIATE" }]
+      },
+      {
+        "filePath": "example-app/app/auth/reducers/login-page.reducer.spec.ts",
+        "line": 40,
+        "usages": [{ "type": "INSTANTIATE" }]
+      },
+      {
+        "filePath": "example-app/app/auth/services/auth-guard.service.spec.ts",
+        "line": 36,
+        "usages": [{ "type": "INSTANTIATE" }]
+      }
+    ]
+  },
+  {
+    "name": "AuthActionTypes.LoginFailure",
+    "filePath": "example-app/app/auth/actions/auth.actions.ts",
+    "line": 23,
+    "references": [
+      {
+        "filePath": "example-app/app/auth/reducers/login-page.reducer.ts",
+        "line": 30,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/auth/reducers/login-page.reducer.ts",
+        "line": 33,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/auth/effects/auth.effects.ts",
+        "line": 24,
+        "usages": [
+          { "type": "INSTANTIATE" },
+          { "type": "EFFECT", "name": "login$" }
+        ]
+      },
+      {
+        "filePath": "example-app/app/auth/effects/auth.effects.spec.ts",
+        "line": 65,
+        "usages": [{ "type": "INSTANTIATE" }]
+      },
+      {
+        "filePath": "example-app/app/auth/reducers/login-page.reducer.spec.ts",
+        "line": 56,
+        "usages": [{ "type": "INSTANTIATE" }]
+      }
+    ]
+  },
+  {
+    "name": "AuthActionTypes.LoginRedirect",
+    "filePath": "example-app/app/auth/actions/auth.actions.ts",
+    "line": 29,
+    "references": [
+      {
+        "filePath": "example-app/app/auth/services/auth-guard.service.ts",
+        "line": 17,
+        "usages": [
+          { "type": "INSTANTIATE" },
+          { "type": "METHOD", "name": "canActivate" }
+        ]
+      },
+      {
+        "filePath": "example-app/app/auth/effects/auth.effects.ts",
+        "line": 37,
+        "usages": [{ "type": "EFFECT", "name": "loginRedirect$" }]
+      },
+      {
+        "filePath": "example-app/app/auth/effects/auth.effects.spec.ts",
+        "line": 92,
+        "usages": [{ "type": "INSTANTIATE" }]
+      }
+    ]
+  },
+  {
+    "name": "AuthActionTypes.Logout",
+    "filePath": "example-app/app/auth/actions/auth.actions.ts",
+    "line": 33,
+    "references": [
+      {
+        "filePath": "example-app/app/auth/reducers/auth.reducer.ts",
+        "line": 23,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/core/containers/app.component.ts",
+        "line": 66,
+        "usages": [
+          { "type": "INSTANTIATE" },
+          { "type": "METHOD", "name": "logout" }
+        ]
+      },
+      {
+        "filePath": "example-app/app/auth/effects/auth.effects.ts",
+        "line": 37,
+        "usages": [{ "type": "EFFECT", "name": "loginRedirect$" }]
+      },
+      {
+        "filePath": "example-app/app/auth/effects/auth.effects.spec.ts",
+        "line": 102,
+        "usages": [{ "type": "INSTANTIATE" }]
+      },
+      {
+        "filePath": "example-app/app/auth/reducers/auth.reducer.spec.ts",
+        "line": 58,
+        "usages": [{ "type": "INSTANTIATE" }]
+      }
+    ]
+  },
+  {
+    "name": "LayoutActionTypes.OpenSidenav",
+    "filePath": "example-app/app/core/actions/layout.actions.ts",
+    "line": 7,
+    "references": [
+      {
+        "filePath": "example-app/app/core/reducers/layout.reducer.ts",
+        "line": 23,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/core/containers/app.component.ts",
+        "line": 60,
+        "usages": [
+          { "type": "INSTANTIATE" },
+          { "type": "METHOD", "name": "openSidenav" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "LayoutActionTypes.CloseSidenav",
+    "filePath": "example-app/app/core/actions/layout.actions.ts",
+    "line": 11,
+    "references": [
+      {
+        "filePath": "example-app/app/core/reducers/layout.reducer.ts",
+        "line": 18,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/core/containers/app.component.ts",
+        "line": 56,
+        "usages": [
+          { "type": "INSTANTIATE" },
+          { "type": "METHOD", "name": "closeSidenav" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "BookActionTypes.Search",
+    "filePath": "example-app/app/books/actions/book.actions.ts",
+    "line": 18,
+    "references": [
+      {
+        "filePath": "example-app/app/books/reducers/search.reducer.ts",
+        "line": 18,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/books/reducers/search.reducer.ts",
+        "line": 19,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/books/containers/find-book-page.component.ts",
+        "line": 34,
+        "usages": [
+          { "type": "INSTANTIATE" },
+          { "type": "METHOD", "name": "search" }
+        ]
+      },
+      {
+        "filePath": "example-app/app/books/effects/book.effects.ts",
+        "line": 43,
+        "usages": [{ "type": "EFFECT", "name": "search$" }]
+      },
+      {
+        "filePath": "example-app/app/books/effects/book.effects.ts",
+        "line": 43,
+        "usages": [{ "type": "EFFECT", "name": "search$" }]
+      },
+      {
+        "filePath": "example-app/app/books/effects/book.effects.ts",
+        "line": 52,
+        "usages": [{ "type": "EFFECT", "name": "search$" }]
+      },
+      {
+        "filePath": "example-app/app/books/containers/find-book-page.component.spec.ts",
+        "line": 65,
+        "usages": [{ "type": "INSTANTIATE" }]
+      },
+      {
+        "filePath": "example-app/app/books/effects/book.effects.spec.ts",
+        "line": 40,
+        "usages": [{ "type": "INSTANTIATE" }]
+      },
+      {
+        "filePath": "example-app/app/books/effects/book.effects.spec.ts",
+        "line": 52,
+        "usages": [{ "type": "INSTANTIATE" }]
+      },
+      {
+        "filePath": "example-app/app/books/effects/book.effects.spec.ts",
+        "line": 65,
+        "usages": [{ "type": "INSTANTIATE" }]
+      }
+    ]
+  },
+  {
+    "name": "BookActionTypes.SearchComplete",
+    "filePath": "example-app/app/books/actions/book.actions.ts",
+    "line": 24,
+    "references": [
+      {
+        "filePath": "example-app/app/books/reducers/search.reducer.ts",
+        "line": 38,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/books/reducers/search.reducer.ts",
+        "line": 40,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/books/reducers/books.reducer.ts",
+        "line": 46,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/books/effects/book.effects.ts",
+        "line": 58,
+        "usages": [
+          { "type": "INSTANTIATE" },
+          { "type": "EFFECT", "name": "search$" }
+        ]
+      },
+      {
+        "filePath": "example-app/app/books/effects/book.effects.spec.ts",
+        "line": 41,
+        "usages": [{ "type": "INSTANTIATE" }]
+      }
+    ]
+  },
+  {
+    "name": "BookActionTypes.SearchError",
+    "filePath": "example-app/app/books/actions/book.actions.ts",
+    "line": 30,
+    "references": [
+      {
+        "filePath": "example-app/app/books/reducers/search.reducer.ts",
+        "line": 47,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/books/reducers/search.reducer.ts",
+        "line": 51,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/books/effects/book.effects.ts",
+        "line": 59,
+        "usages": [
+          { "type": "INSTANTIATE" },
+          { "type": "EFFECT", "name": "search$" }
+        ]
+      },
+      {
+        "filePath": "example-app/app/books/effects/book.effects.spec.ts",
+        "line": 53,
+        "usages": [{ "type": "INSTANTIATE" }]
+      }
+    ]
+  },
+  {
+    "name": "BookActionTypes.Load",
+    "filePath": "example-app/app/books/actions/book.actions.ts",
+    "line": 36,
+    "references": [
+      {
+        "filePath": "example-app/app/books/reducers/books.reducer.ts",
+        "line": 61,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/books/reducers/books.reducer.ts",
+        "line": 69,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/books/guards/book-exists.guard.ts",
+        "line": 54,
+        "usages": [
+          { "type": "INSTANTIATE" },
+          { "type": "METHOD", "name": "hasBookInApi" }
+        ]
+      },
+      {
+        "filePath": "example-app/app/books/guards/book-exists.guard.ts",
+        "line": 55,
+        "usages": [{ "type": "METHOD", "name": "hasBookInApi" }]
+      },
+      {
+        "filePath": "example-app/app/books/guards/book-exists.guard.ts",
+        "line": 55,
+        "usages": [{ "type": "METHOD", "name": "hasBookInApi" }]
+      },
+      {
+        "filePath": "example-app/app/books/guards/book-exists.guard.ts",
+        "line": 55,
+        "usages": [{ "type": "METHOD", "name": "hasBookInApi" }]
+      },
+      {
+        "filePath": "example-app/app/books/reducers/books.reducer.spec.ts",
+        "line": 89,
+        "usages": [{ "type": "INSTANTIATE" }]
+      },
+      {
+        "filePath": "example-app/app/books/reducers/books.reducer.spec.ts",
+        "line": 97,
+        "usages": [{ "type": "INSTANTIATE" }]
+      }
+    ]
+  },
+  {
+    "name": "BookActionTypes.Select",
+    "filePath": "example-app/app/books/actions/book.actions.ts",
+    "line": 42,
+    "references": [
+      {
+        "filePath": "example-app/app/books/reducers/books.reducer.ts",
+        "line": 75,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/books/reducers/books.reducer.ts",
+        "line": 78,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/books/containers/view-book-page.component.ts",
+        "line": 31,
+        "usages": [
+          { "type": "INSTANTIATE" },
+          { "type": "CONSTRUCTOR", "name": "ViewBookPageComponent" }
+        ]
+      },
+      {
+        "filePath": "example-app/app/books/containers/view-book-page.component.spec.ts",
+        "line": 58,
+        "usages": [{ "type": "INSTANTIATE" }]
+      },
+      {
+        "filePath": "example-app/app/books/reducers/books.reducer.spec.ts",
+        "line": 107,
+        "usages": [{ "type": "INSTANTIATE" }]
+      }
+    ]
+  },
+  {
+    "name": "CollectionActionTypes.AddBook",
+    "filePath": "example-app/app/books/actions/collection.actions.ts",
+    "line": 18,
+    "references": [
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.ts",
+        "line": 51,
+        "usages": [{ "type": "EFFECT", "name": "addBookToCollection$" }]
+      },
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.ts",
+        "line": 51,
+        "usages": [{ "type": "EFFECT", "name": "addBookToCollection$" }]
+      },
+      {
+        "filePath": "example-app/app/books/containers/selected-book-page.component.ts",
+        "line": 34,
+        "usages": [
+          { "type": "INSTANTIATE" },
+          { "type": "METHOD", "name": "addToCollection" }
+        ]
+      },
+      {
+        "filePath": "example-app/app/books/containers/selected-book-page.component.spec.ts",
+        "line": 50,
+        "usages": [{ "type": "INSTANTIATE" }]
+      },
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.spec.ts",
+        "line": 77,
+        "usages": [{ "type": "INSTANTIATE" }]
+      },
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.spec.ts",
+        "line": 90,
+        "usages": [{ "type": "INSTANTIATE" }]
+      }
+    ]
+  },
+  {
+    "name": "CollectionActionTypes.AddBookSuccess",
+    "filePath": "example-app/app/books/actions/collection.actions.ts",
+    "line": 24,
+    "references": [
+      {
+        "filePath": "example-app/app/books/reducers/collection.reducer.ts",
+        "line": 37,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.ts",
+        "line": 55,
+        "usages": [
+          { "type": "INSTANTIATE" },
+          { "type": "EFFECT", "name": "addBookToCollection$" }
+        ]
+      },
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.spec.ts",
+        "line": 78,
+        "usages": [{ "type": "INSTANTIATE" }]
+      }
+    ]
+  },
+  {
+    "name": "CollectionActionTypes.AddBookFail",
+    "filePath": "example-app/app/books/actions/collection.actions.ts",
+    "line": 30,
+    "references": [
+      {
+        "filePath": "example-app/app/books/reducers/collection.reducer.ts",
+        "line": 50,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.ts",
+        "line": 56,
+        "usages": [
+          { "type": "INSTANTIATE" },
+          { "type": "EFFECT", "name": "addBookToCollection$" }
+        ]
+      },
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.spec.ts",
+        "line": 91,
+        "usages": [{ "type": "INSTANTIATE" }]
+      }
+    ]
+  },
+  {
+    "name": "CollectionActionTypes.RemoveBook",
+    "filePath": "example-app/app/books/actions/collection.actions.ts",
+    "line": 39,
+    "references": [
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.ts",
+        "line": 63,
+        "usages": [{ "type": "EFFECT", "name": "removeBookFromCollection$" }]
+      },
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.ts",
+        "line": 63,
+        "usages": [{ "type": "EFFECT", "name": "removeBookFromCollection$" }]
+      },
+      {
+        "filePath": "example-app/app/books/containers/selected-book-page.component.ts",
+        "line": 38,
+        "usages": [
+          { "type": "INSTANTIATE" },
+          { "type": "METHOD", "name": "removeFromCollection" }
+        ]
+      },
+      {
+        "filePath": "example-app/app/books/containers/selected-book-page.component.spec.ts",
+        "line": 59,
+        "usages": [{ "type": "INSTANTIATE" }]
+      },
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.spec.ts",
+        "line": 104,
+        "usages": [{ "type": "INSTANTIATE" }]
+      },
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.spec.ts",
+        "line": 119,
+        "usages": [{ "type": "INSTANTIATE" }]
+      }
+    ]
+  },
+  {
+    "name": "CollectionActionTypes.RemoveBookSuccess",
+    "filePath": "example-app/app/books/actions/collection.actions.ts",
+    "line": 45,
+    "references": [
+      {
+        "filePath": "example-app/app/books/reducers/collection.reducer.ts",
+        "line": 49,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.ts",
+        "line": 67,
+        "usages": [
+          { "type": "INSTANTIATE" },
+          { "type": "EFFECT", "name": "removeBookFromCollection$" }
+        ]
+      },
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.spec.ts",
+        "line": 105,
+        "usages": [{ "type": "INSTANTIATE" }]
+      }
+    ]
+  },
+  {
+    "name": "CollectionActionTypes.RemoveBookFail",
+    "filePath": "example-app/app/books/actions/collection.actions.ts",
+    "line": 51,
+    "references": [
+      {
+        "filePath": "example-app/app/books/reducers/collection.reducer.ts",
+        "line": 38,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.ts",
+        "line": 68,
+        "usages": [
+          { "type": "INSTANTIATE" },
+          { "type": "EFFECT", "name": "removeBookFromCollection$" }
+        ]
+      },
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.spec.ts",
+        "line": 120,
+        "usages": [{ "type": "INSTANTIATE" }]
+      }
+    ]
+  },
+  {
+    "name": "CollectionActionTypes.Load",
+    "filePath": "example-app/app/books/actions/collection.actions.ts",
+    "line": 60,
+    "references": [
+      {
+        "filePath": "example-app/app/books/reducers/collection.reducer.ts",
+        "line": 22,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/books/containers/collection-page.component.ts",
+        "line": 41,
+        "usages": [
+          { "type": "INSTANTIATE" },
+          { "type": "METHOD", "name": "ngOnInit" }
+        ]
+      },
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.ts",
+        "line": 39,
+        "usages": [{ "type": "EFFECT", "name": "loadCollection$" }]
+      },
+      {
+        "filePath": "example-app/app/books/containers/collection-page.component.spec.ts",
+        "line": 54,
+        "usages": [{ "type": "INSTANTIATE" }]
+      },
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.spec.ts",
+        "line": 50,
+        "usages": [{ "type": "INSTANTIATE" }]
+      },
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.spec.ts",
+        "line": 62,
+        "usages": [{ "type": "INSTANTIATE" }]
+      }
+    ]
+  },
+  {
+    "name": "CollectionActionTypes.LoadSuccess",
+    "filePath": "example-app/app/books/actions/collection.actions.ts",
+    "line": 64,
+    "references": [
+      {
+        "filePath": "example-app/app/books/reducers/books.reducer.ts",
+        "line": 47,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/books/reducers/collection.reducer.ts",
+        "line": 29,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/books/reducers/collection.reducer.ts",
+        "line": 33,
+        "usages": [{ "type": "REDUCER" }]
+      },
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.ts",
+        "line": 43,
+        "usages": [
+          { "type": "INSTANTIATE" },
+          { "type": "EFFECT", "name": "loadCollection$" }
+        ]
+      },
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.spec.ts",
+        "line": 51,
+        "usages": [{ "type": "INSTANTIATE" }]
+      }
+    ]
+  },
+  {
+    "name": "CollectionActionTypes.LoadFail",
+    "filePath": "example-app/app/books/actions/collection.actions.ts",
+    "line": 70,
+    "references": [
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.ts",
+        "line": 44,
+        "usages": [
+          { "type": "INSTANTIATE" },
+          { "type": "EFFECT", "name": "loadCollection$" }
+        ]
+      },
+      {
+        "filePath": "example-app/app/books/effects/collection.effects.spec.ts",
+        "line": 64,
+        "usages": [{ "type": "INSTANTIATE" }]
+      }
+    ]
+  }
+]

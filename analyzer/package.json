@@ -1,0 +1,19 @@
+{
+  "name": "ngrx-visualizer-analyzer",
+  "version": "1.0.0",
+  "description": "Produces data for ngrx-visualizer",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/analyzer.ts"
+  },
+  "keywords": [],
+  "author": "Google LLC",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@types/node": "^10.5.8",
+    "commander": "^2.17.1",
+    "ts-node": "^7.0.1",
+    "tsutils": "^3.0.0",
+    "typescript": "^3.0.1"
+  }
+}

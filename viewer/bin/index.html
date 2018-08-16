@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 The NgRx Visualizer Authors.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NgRx Visualizer</title>
+    <link href="styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="loading-dialog-container">
+        <div id="loading-dialog" class="visible">
+            <div class="centered">
+                <div id="loading-header">
+                    <div id="loading-header-text" class="noselect">Loading</div>
+                    <button id="loading-exit-button" class="material-icons">close</button>
+                </div>
+                <div id="loading-spinner" class="lds-dual-ring"></div>
+            </div>
+            <div id="loading-text">
+                Status: Starting scripts
+            </div>
+        </div>
+    </div>
+    <svg id="canvas">
+        <defs>
+            <marker id="arrowhead" viewBox="-0 -10 30 20" refX="19.8" refY="0" orient="auto" markerWidth="13" markerHeight="13" xoverflow="visible"
+                class="arrow">
+                <path d="M 0,-5 L 10 ,0 L 0,5"></path>
+            </marker>
+        </defs>
+    </svg>
+    <div id="overlay-container">
+        <div id="sidebar-container">
+            <div id="sidebar-buttons-container" class="noselect">
+                <button id="sidebar-search-button" class="material-icons sidebar-button">search</button>
+                <button id="sidebar-visibility-button" class="material-icons sidebar-button">visibility</button>
+                <button id="sidebar-refresh-button" class="material-icons sidebar-button">refresh</button>
+                <button id="sidebar-ease-button" class="material-icons sidebar-button">zoom_out_map</button>
+                <button id="sidebar-open-file-button" class="material-icons sidebar-button">folder_open</button>
+                <button id="sidebar-copy-button" class="material-icons sidebar-button">file_copy</button>
+                <input type="file" id="sidebar-file-select" />
+                <button id="sidebar-settings-button" class="material-icons sidebar-button">settings</button>
+            </div>
+            <div id="sidebar-search">
+                <div class="sidebar-drag"></div>
+                <div id="search-container">
+                    <form id="search-form">
+                        <input id="search-box" type="text">
+                        <input id="search-button" type="submit" value="Find">
+                    </form>
+                    <div id="search-results"></div>
+                </div>
+            </div>
+            <div id="sidebar-visibility">
+                <div class="sidebar-drag"></div>
+                <div id="visibility-content"></div>
+            </div>
+        </div>
+        <div id="bottombar-container">
+            <div id="bottombar-buttons-container" class="noselect">
+                <button id="bottombar-details-button" class="bottombar-button">
+                    <i class="material-icons animated-90">chevron_left</i>
+                </button>
+            </div>
+            <div id="bottombar">
+                <div id="bottombar-drag"></div>
+                <div id="details"></div>
+            </div>
+        </div>
+        <div id="settings-container">
+            <div id="settings">
+                <div id="settings-header">
+                    <div id="settings-header-text" class="noselect">Settings</div>
+                    <button id="settings-exit-button" class="material-icons">close</button>
+                </div>
+                <div class="settings-row">
+                    <div>Display Mode:</div>
+                    <select id="settings-display-mode-select">
+                        <option value="splitreducers">Split Reducers</option>
+                        <option value="reducers">Reducers</option>
+                        <option value="noreducers">No Reducers</option>
+                    </select>
+                </div>
+                <div class="settings-row">
+                    <div>Color Scheme:</div>
+                    <select id="settings-style-select">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                    </select>
+                </div>
+                <div class="settings-row">
+                    <div>Graphics Quality:</div>
+                    <select id="settings-graphics-select">
+                        <option value="best">Best</option>
+                        <option value="fast">Fast</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="bundle.js"></script>
+</body>
+
+</html>
