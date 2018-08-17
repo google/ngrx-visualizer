@@ -9,7 +9,7 @@
     "test": "jasmine-ts \"src/**/*.spec.ts\"",
     "tsc:w": "tsc -w",
     "rollup:w": "rollup -c -w",
-    "start": "npm-run-all --parallel serve tsc:w rollup:w"
+    "start": "npm run build; npm-run-all --parallel serve tsc:w rollup:w"
   },
   "keywords": [],
   "author": "Google LLC",
