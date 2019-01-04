@@ -20,7 +20,7 @@ import {SyntaxKind} from 'typescript';
 
 import {UsageType} from '../common/types';
 import {NamedUsageExport} from '../common/types';
-import * as utils from '../wrapped_utils';
+import * as utils from '../common/typescript_utils';
 
 import {Usage} from './usage';
 

@@ -48,3 +48,14 @@ export interface ActionExport {
   line: number;
   references: ReferenceExport[];
 }
+
+/** Options passed into the analyzer script. */
+export interface AnalyzerOptions {
+  actions: string;
+  classic: boolean;
+  emptyRef: boolean;
+  exclude: string;
+  folder: string;
+  remove: string;
+  save: string;
+}

@@ -19,19 +19,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as ts from 'typescript';
 
-import {ActionExport} from './common/types';
+import {ActionExport, AnalyzerOptions} from './common/types';
 import {endsWith, setArgs} from './common/utils';
 import {ProjectAnalyzer} from './project_analyzer';
-
-export interface AnalyzerOptions {
-  actions: string;
-  classic: boolean;
-  emptyRef: boolean;
-  exclude: string;
-  folder: string;
-  remove: string;
-  save: string;
-}
 
 /** Run the analyzer with given arguments */
 export function main(args: AnalyzerOptions): ActionExport[] {

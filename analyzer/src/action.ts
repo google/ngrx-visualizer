@@ -18,9 +18,9 @@ import {NodeWrap} from 'tsutils';
 import * as ts from 'typescript';
 
 import {ActionExport} from './common/types';
+import * as utils from './common/typescript_utils';
 import {formatPath, getArgs} from './common/utils';
 import {Reference} from './reference';
-import * as utils from './wrapped_utils';
 
 /** Holds references to an action */
 export class Action {

@@ -20,6 +20,7 @@ import * as ts from 'typescript';
 import {SyntaxKind} from 'typescript';
 
 import {Action} from './action';
+import * as utils from './common/typescript_utils';
 import {getArgs} from './common/utils';
 import {Reference} from './reference';
 import {ConstructorUsage} from './usage/constructor_usage';
@@ -29,7 +30,6 @@ import {MethodUsage} from './usage/method_usage';
 import {ReducerUsage} from './usage/reducer_usage';
 import {UnknownUsage} from './usage/unknown_usage';
 import {Usage} from './usage/usage';
-import * as utils from './wrapped_utils';
 
 /** The list of usages to consider when analyzing the AST */
 const USAGE_CLASSES: Array<{

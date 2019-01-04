@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {AnalyzerOptions} from '../analyzer';
+import {AnalyzerOptions} from './types';
 
 let args: AnalyzerOptions;
 
