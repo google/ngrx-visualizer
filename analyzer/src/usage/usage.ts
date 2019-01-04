@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import { NodeWrap } from "tsutils";
-import * as ts from "typescript";
-import { UsageType } from "../common/types";
-import { UsageExport } from "../common/types";
+import {NodeWrap} from 'tsutils';
+import * as ts from 'typescript';
+import {UsageType} from '../common/types';
+import {UsageExport} from '../common/types';
 
 /** Implement to describe the AST of a reference usage */
 export abstract class Usage {
@@ -29,7 +29,7 @@ export abstract class Usage {
 
   /** An exported version of this usage */
   export(): UsageExport {
-    return { type: this.type };
+    return {type: this.type};
   }
 
   /** Returns true if the reference node's AST looks like this usage type */

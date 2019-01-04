@@ -14,31 +14,28 @@
  * limitations under the License.
  */
 
-import { NodeWrap } from "tsutils";
-import * as ts from "typescript";
+import {NodeWrap} from 'tsutils';
+import * as ts from 'typescript';
 
-import { UsageType } from "./common/types";
-import { ReferenceExport } from "./common/types";
-import { formatPath } from "./common/utils";
-import { Usage } from "./usage/usage";
+import {UsageType} from './common/types';
+import {ReferenceExport} from './common/types';
+import {formatPath} from './common/utils';
+import {Usage} from './usage/usage';
 
 /** Contains usages descriptions of a reference */
 export class Reference {
   constructor(
-    public node: NodeWrap,
-    public sourceFile: ts.SourceFile,
-    public usages: Usage[]
-  ) {}
+      public node: NodeWrap, public sourceFile: ts.SourceFile,
+      public usages: Usage[]) {}
 
   export(): ReferenceExport {
     return {
       filePath: formatPath(this.sourceFile.fileName),
-      line: this.sourceFile.getLineAndCharacterOfPosition(
-        this.node.node.getStart()
-      ).line,
-      usages: this.usages
-        .filter(u => u.type !== UsageType.UNKNOWN)
-        .map(u => u.export())
+      line: this.sourceFile
+                .getLineAndCharacterOfPosition(this.node.node.getStart())
+                .line,
+      usages: this.usages.filter(u => u.type !== UsageType.UNKNOWN)
+                  .map(u => u.export())
     };
   }
 }

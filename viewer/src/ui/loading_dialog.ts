@@ -23,9 +23,9 @@ export class LoadingDialogUI {
   private visible: boolean;
 
   constructor(private readonly documentRef: HTMLDocument) {
-    this.dialog = this.documentRef.getElementById("loading-dialog");
-    this.exitButton = this.documentRef.getElementById("loading-exit-button");
-    this.textElement = this.documentRef.getElementById("loading-text");
+    this.dialog = this.documentRef.getElementById('loading-dialog');
+    this.exitButton = this.documentRef.getElementById('loading-exit-button');
+    this.textElement = this.documentRef.getElementById('loading-text');
 
     this.initElements();
   }
@@ -38,9 +38,9 @@ export class LoadingDialogUI {
   setVisible(visible: boolean) {
     this.visible = visible;
     if (this.visible) {
-      this.dialog.classList.add("visible");
+      this.dialog.classList.add('visible');
     } else {
-      this.dialog.classList.remove("visible");
+      this.dialog.classList.remove('visible');
     }
     return this.visible;
   }
@@ -66,6 +66,6 @@ export class LoadingDialogUI {
   }
 
   private initElements() {
-    this.exitButton.addEventListener("click", () => this.toggleVisible());
+    this.exitButton.addEventListener('click', () => this.toggleVisible());
   }
 }

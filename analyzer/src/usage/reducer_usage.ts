@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-import { NodeWrap } from "tsutils";
-import * as ts from "typescript";
-import { SyntaxKind } from "typescript";
+import {NodeWrap} from 'tsutils';
+import * as ts from 'typescript';
+import {SyntaxKind} from 'typescript';
 
-import { UsageType } from "../common/types";
-import { formatPath } from "../common/utils";
-import * as utils from "../wrapped_utils";
+import {UsageType} from '../common/types';
+import {formatPath} from '../common/utils';
+import * as utils from '../wrapped_utils';
 
-import { Usage } from "./usage";
+import {Usage} from './usage';
 
 /** Description of a node inside an ngrx reducer */
 export class ReducerUsage extends Usage {
@@ -40,23 +40,17 @@ export class ReducerUsage extends Usage {
     return ReducerUsage.isWithinReducer(node, sourceFile);
   }
 
-  private static isWithinReducer(
-    node: NodeWrap,
-    sourceFile: ts.SourceFile
-  ): boolean {
+  private static isWithinReducer(node: NodeWrap, sourceFile: ts.SourceFile):
+      boolean {
     let highestBlock = utils.getParentWhile(
-      node,
-      p => p.kind === SyntaxKind.PropertyAccessExpression
-    );
+        node, p => p.kind === SyntaxKind.PropertyAccessExpression);
 
     if (highestBlock === undefined) {
       highestBlock = node;
     }
 
     const switchChild = utils.getParentWhile(
-      highestBlock,
-      p => p.kind !== SyntaxKind.SwitchStatement
-    );
+        highestBlock, p => p.kind !== SyntaxKind.SwitchStatement);
 
     if (!switchChild || !switchChild.parent) {
       return false;
@@ -64,29 +58,22 @@ export class ReducerUsage extends Usage {
 
     const switchStatement = switchChild.parent;
 
-    const identifierChildren = utils.getChildrenOfKind(
-      switchStatement,
-      SyntaxKind.Identifier
-    );
+    const identifierChildren =
+        utils.getChildrenOfKind(switchStatement, SyntaxKind.Identifier);
     const parameterAccessChildren = utils.getChildrenOfKind(
-      switchChild.parent,
-      SyntaxKind.PropertyAccessExpression
-    );
+        switchChild.parent, SyntaxKind.PropertyAccessExpression);
 
     // In reducer if there is some child in the switch related to type
-    const directChild =
-      identifierChildren.length > 0 &&
-      identifierChildren.some(
-        c => c.node.getText(sourceFile).indexOf("type") !== -1
-      );
+    const directChild = identifierChildren.length > 0 &&
+        identifierChildren.some(
+            c => c.node.getText(sourceFile).indexOf('type') !== -1);
 
-    const parameterChild =
-      parameterAccessChildren.length > 0 &&
-      parameterAccessChildren.some(c =>
-        utils
-          .getDescendantsOfKind(c, SyntaxKind.Identifier)
-          .some(i => i.node.getText(sourceFile).indexOf("type") !== -1)
-      );
+    const parameterChild = parameterAccessChildren.length > 0 &&
+        parameterAccessChildren.some(
+            c => utils.getDescendantsOfKind(c, SyntaxKind.Identifier)
+                     .some(
+                         i => i.node.getText(sourceFile).indexOf('type') !==
+                             -1));
     return directChild || parameterChild;
   }
 }

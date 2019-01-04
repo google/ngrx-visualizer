@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-import { NodeType } from "../common/types";
+import {NodeType} from '../common/types';
 
 /** Convert NodeType to a text representation */
 export function typeToText(type: NodeType) {
   return {
-    [NodeType.UNKNOWN]: "Unknown",
-    [NodeType.ACTION]: "Action",
-    [NodeType.EFFECT]: "Effect",
-    [NodeType.METHOD]: "Method",
-    [NodeType.REDUCER]: "Reducer"
+    [NodeType.UNKNOWN]: 'Unknown',
+    [NodeType.ACTION]: 'Action',
+    [NodeType.EFFECT]: 'Effect',
+    [NodeType.METHOD]: 'Method',
+    [NodeType.REDUCER]: 'Reducer'
   }[type];
 }
 
@@ -38,7 +38,7 @@ export function storeData(key: string, value: any, exdays: number): boolean {
   try {
     const d = new Date();
     d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-    const storeObject = { expires: d, value };
+    const storeObject = {expires: d, value};
     localStorage.setItem(key, JSON.stringify(storeObject));
     return true;
   } catch (e) {
@@ -70,29 +70,27 @@ export function getData(key: string) {
 }
 
 // https://stackoverflow.com/questions/45790423/how-to-get-parameter-name
-export function getURLParameterByName(
-  name: string,
-  url?: string
-): string | undefined {
+export function getURLParameterByName(name: string, url?: string): string|
+    undefined {
   if (!url) {
     url = window.location.href;
   }
-  name = name.replace(/[\[\]]/g, "\\$&");
-  const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+  name = name.replace(/[\[\]]/g, '\\$&');
+  const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
   const results = regex.exec(url);
   if (!results) {
     return undefined;
   }
   if (!results[2]) {
-    return "";
+    return '';
   }
-  return decodeURIComponent(results[2].replace(/\+/g, " "));
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
 export function updateURLParameter(key: string, value: string) {
   if (history.replaceState) {
     const newUrl = updateQueryString(key, value);
-    window.history.replaceState("", "", newUrl);
+    window.history.replaceState('', '', newUrl);
   }
 }
 
@@ -101,26 +99,26 @@ export function updateQueryString(key: string, value: string, url?: string) {
   if (!url) {
     url = window.location.href;
   }
-  const re = new RegExp("([?&])" + key + "=.*?(&|#|$)(.*)", "gi");
+  const re = new RegExp('([?&])' + key + '=.*?(&|#|$)(.*)', 'gi');
   let hash;
 
   if (re.test(url)) {
-    if (typeof value !== "undefined" && value !== null) {
-      return url.replace(re, "$1" + key + "=" + value + "$2$3");
+    if (typeof value !== 'undefined' && value !== null) {
+      return url.replace(re, '$1' + key + '=' + value + '$2$3');
     } else {
-      hash = url.split("#");
-      url = hash[0].replace(re, "$1$3").replace(/(&|\?)$/, "");
-      if (typeof hash[1] !== "undefined" && hash[1] !== null) {
-        url += "#" + hash[1];
+      hash = url.split('#');
+      url = hash[0].replace(re, '$1$3').replace(/(&|\?)$/, '');
+      if (typeof hash[1] !== 'undefined' && hash[1] !== null) {
+        url += '#' + hash[1];
       }
       return url;
     }
-  } else if (typeof value !== "undefined" && value !== null) {
-    const separator = url.indexOf("?") !== -1 ? "&" : "?";
-    hash = url.split("#");
-    url = hash[0] + separator + key + "=" + value;
-    if (typeof hash[1] !== "undefined" && hash[1] !== null) {
-      url += "#" + hash[1];
+  } else if (typeof value !== 'undefined' && value !== null) {
+    const separator = url.indexOf('?') !== -1 ? '&' : '?';
+    hash = url.split('#');
+    url = hash[0] + separator + key + '=' + value;
+    if (typeof hash[1] !== 'undefined' && hash[1] !== null) {
+      url += '#' + hash[1];
     }
     return url;
   } else {

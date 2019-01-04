@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { AnalyzerOptions } from "../analyzer";
+import {AnalyzerOptions} from '../analyzer';
 
 let args: AnalyzerOptions;
 
@@ -34,7 +34,7 @@ export function formatPath(input: string) {
     return input;
   }
   const regex = new RegExp(args.remove);
-  return input.replace(regex, "").replace("\\", "/");
+  return input.replace(regex, '').replace('\\', '/');
 }
 
 /** Check if a string ends with another string */

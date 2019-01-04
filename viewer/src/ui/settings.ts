@@ -24,31 +24,28 @@ export class SettingsUI {
   settingsBox: HTMLElement;
 
   constructor(private readonly documentRef: HTMLDocument) {
-    this.sidebarButton = this.documentRef.getElementById(
-      "sidebar-settings-button"
-    );
-    this.exitButton = this.documentRef.getElementById("settings-exit-button");
-    this.displayModeSelect = this.documentRef.getElementById(
-      "settings-display-mode-select"
-    ) as HTMLSelectElement;
+    this.sidebarButton =
+        this.documentRef.getElementById('sidebar-settings-button');
+    this.exitButton = this.documentRef.getElementById('settings-exit-button');
+    this.displayModeSelect =
+        this.documentRef.getElementById('settings-display-mode-select') as
+        HTMLSelectElement;
     this.styleSelect = this.documentRef.getElementById(
-      "settings-style-select"
-    ) as HTMLSelectElement;
+                           'settings-style-select') as HTMLSelectElement;
     this.graphicsSelect = this.documentRef.getElementById(
-      "settings-graphics-select"
-    ) as HTMLSelectElement;
-    this.settingsBox = this.documentRef.getElementById("settings");
+                              'settings-graphics-select') as HTMLSelectElement;
+    this.settingsBox = this.documentRef.getElementById('settings');
 
     this.initElements();
   }
 
   /** Toggle the visibility of the settings dialog */
   toggleVisibility() {
-    this.settingsBox.classList.toggle("visible");
+    this.settingsBox.classList.toggle('visible');
   }
 
   private initElements() {
-    this.sidebarButton.addEventListener("click", () => this.toggleVisibility());
-    this.exitButton.addEventListener("click", () => this.toggleVisibility());
+    this.sidebarButton.addEventListener('click', () => this.toggleVisibility());
+    this.exitButton.addEventListener('click', () => this.toggleVisibility());
   }
 }

@@ -16,11 +16,11 @@
 
 /** Parameters that affect the simulation */
 
-import { CachedGraph } from "../common/types";
-import { getData, storeData } from "../ui/utils";
-import { loadStatus, setGraphJSON } from "./actions";
-import { restoreNodePositions, updateD3EngineAndReset } from "./internal";
-import { Simulation } from "./simulation";
+import {CachedGraph} from '../common/types';
+import {getData, storeData} from '../ui/utils';
+import {loadStatus, setGraphJSON} from './actions';
+import {restoreNodePositions, updateD3EngineAndReset} from './internal';
+import {Simulation} from './simulation';
 
 /** Downloads a graph, loads it, then stores it in localStorage */
 export function cacheAndLoadGraph(sim: Simulation) {
@@ -33,25 +33,21 @@ export function cacheAndLoadGraph(sim: Simulation) {
       setGraphJSON(sim, request.response);
       initShowParam(sim);
       updateD3EngineAndReset(sim, false, true);
-      if (
-        sim.options.cacheParam !== undefined &&
-        sim.options.cacheParam !== 0
-      ) {
+      if (sim.options.cacheParam !== undefined &&
+          sim.options.cacheParam !== 0) {
         storeData(
-          dataKey,
-          {
-            display: `${sim.ui.settings.displayModeSelect.value}`,
-            graph: sim.graph,
-            json: request.response
-          },
-          sim.options.cacheParam
-        );
+            dataKey, {
+              display: `${sim.ui.settings.displayModeSelect.value}`,
+              graph: sim.graph,
+              json: request.response
+            },
+            sim.options.cacheParam);
       }
     } else {
       loadStatus(sim, `Failed to download: ${sim.options.loadParam}`);
     }
   };
-  request.open("GET", sim.options.loadParam);
+  request.open('GET', sim.options.loadParam);
   request.send();
 }
 
@@ -65,14 +61,9 @@ export function initLoadParam(sim: Simulation): boolean {
 
   const dataKey = `CachedGraph: ${sim.options.loadParam}`;
   const cachedGraph = getData(dataKey) as CachedGraph;
-  if (
-    sim.options.cacheParam !== undefined &&
-    sim.options.cacheParam !== 0 &&
-    cachedGraph &&
-    cachedGraph.json &&
-    cachedGraph.graph &&
-    cachedGraph.display
-  ) {
+  if (sim.options.cacheParam !== undefined && sim.options.cacheParam !== 0 &&
+      cachedGraph && cachedGraph.json && cachedGraph.graph &&
+      cachedGraph.display) {
     try {
       loadStatus(sim, `Loading cache: ${sim.options.loadParam}`);
       sim.ui.settings.displayModeSelect.value = cachedGraph.display;

@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-import { NodeWrap } from "tsutils";
-import * as ts from "typescript";
-import { SyntaxKind } from "typescript";
+import {NodeWrap} from 'tsutils';
+import * as ts from 'typescript';
+import {SyntaxKind} from 'typescript';
 
-import { UsageType } from "../common/types";
-import { NamedUsageExport } from "../common/types";
-import { formatPath } from "../common/utils";
-import * as utils from "../wrapped_utils";
+import {UsageType} from '../common/types';
+import {NamedUsageExport} from '../common/types';
+import {formatPath} from '../common/utils';
+import * as utils from '../wrapped_utils';
 
-import { Usage } from "./usage";
+import {Usage} from './usage';
 
 /** Description of a node inside an @Effect decorator */
 export class EffectUsage extends Usage {
@@ -38,48 +38,38 @@ export class EffectUsage extends Usage {
   }
 
   toName(): string {
-    const identifier = EffectUsage.getEffectIdentifier(
-      this.node,
-      this.sourceFile
-    );
+    const identifier =
+        EffectUsage.getEffectIdentifier(this.node, this.sourceFile);
     if (!identifier) {
-      return "Unknown";
+      return 'Unknown';
     }
     return identifier.node.getText(this.sourceFile);
   }
 
   export(): NamedUsageExport {
-    return { ...super.export(), name: this.toName() };
+    return {...super.export(), name: this.toName()};
   }
 
   static matches(node: NodeWrap, sourceFile: ts.SourceFile): boolean {
     return !!EffectUsage.getEffectIdentifier(node, sourceFile);
   }
 
-  private static getEffectIdentifier(
-    node: NodeWrap,
-    sourceFile: ts.SourceFile
-  ): NodeWrap | undefined {
+  private static getEffectIdentifier(node: NodeWrap, sourceFile: ts.SourceFile):
+      NodeWrap|undefined {
     // Traverse up the AST until we find the decorator
     const decoratorChild = utils.getParentWhile(
-      node,
-      p => utils.getDescendantsOfKind(p, SyntaxKind.Decorator).length === 0
-    );
+        node,
+        p => utils.getDescendantsOfKind(p, SyntaxKind.Decorator).length === 0);
 
     if (!decoratorChild || !decoratorChild.parent) {
       return undefined;
     }
 
     const decorator = utils.getFirstDescendantOfKind(
-      decoratorChild.parent,
-      SyntaxKind.Decorator
-    );
+        decoratorChild.parent, SyntaxKind.Decorator);
 
-    if (
-      !decorator ||
-      !decorator.parent ||
-      decorator.node.getText(sourceFile).indexOf("@Effect(") !== 0
-    ) {
+    if (!decorator || !decorator.parent ||
+        decorator.node.getText(sourceFile).indexOf('@Effect(') !== 0) {
       return undefined;
     }
 
@@ -90,10 +80,8 @@ export class EffectUsage extends Usage {
     }
 
     // Get the first identifier of the decorator's parent
-    const identifiers = utils.getChildrenOfKind(
-      decoratorParent,
-      SyntaxKind.Identifier
-    );
+    const identifiers =
+        utils.getChildrenOfKind(decoratorParent, SyntaxKind.Identifier);
 
     return identifiers[0];
   }

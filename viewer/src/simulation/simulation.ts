@@ -16,32 +16,15 @@
 
 /** Renders NgRx analysis results as a graph */
 
-import * as d3 from "d3";
-import { Link, Node } from "../common/types";
-import { NgrxGraph } from "../ngrx_graph";
-import { UI } from "../ui/ui";
-import { loadStatus } from "./actions";
-import {
-  initCopyButton,
-  initEaseButton,
-  initOpenFileButton,
-  initRefreshButton,
-  initSearch
-} from "./buttons";
-import {
-  initHandlers,
-  initSimulation,
-  initSVG,
-  updateD3EngineAndReset,
-  updateD3SimData
-} from "./internal";
-import { initLoadParam } from "./params";
-import {
-  initDisplayModeSetting,
-  initGraphicsSetting,
-  initStyleSetting,
-  loadSettings
-} from "./settings";
+import * as d3 from 'd3';
+import {Link, Node} from '../common/types';
+import {NgrxGraph} from '../ngrx_graph';
+import {UI} from '../ui/ui';
+import {loadStatus} from './actions';
+import {initCopyButton, initEaseButton, initOpenFileButton, initRefreshButton, initSearch} from './buttons';
+import {initHandlers, initSimulation, initSVG, updateD3EngineAndReset, updateD3SimData} from './internal';
+import {initLoadParam} from './params';
+import {initDisplayModeSetting, initGraphicsSetting, initStyleSetting, loadSettings} from './settings';
 
 /** Input settings for the simulation */
 export interface SimulationOptions {
@@ -77,14 +60,10 @@ export class Simulation {
   chargeForce: d3.ForceManyBody<Node>;
 
   zoomHandler: d3.ZoomBehavior<Element, {}>;
-  dragHandler: d3.DragBehavior<
-    SVGCircleElement,
-    Node,
-    d3.SubjectPosition | Node
-  >;
+  dragHandler: d3.DragBehavior<SVGCircleElement, Node, d3.SubjectPosition|Node>;
 
   constructor(readonly options: SimulationOptions, readonly ui: UI) {
-    loadStatus(this, "Starting simulation");
+    loadStatus(this, 'Starting simulation');
     this.graph = NgrxGraph.empty();
 
     initSimulation(this);
@@ -105,7 +84,7 @@ export class Simulation {
 
     initSearch(this);
 
-    loadStatus(this, "Loading graph");
+    loadStatus(this, 'Loading graph');
     initLoadParam(this);
     if (!this.options.loadParam) {
       this.ui.loading.setVisible(false);

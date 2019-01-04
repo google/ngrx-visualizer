@@ -16,15 +16,15 @@
 
 /** Describes shared types */
 
-import { SimulationLinkDatum, SimulationNodeDatum } from "d3";
+import {SimulationLinkDatum, SimulationNodeDatum} from 'd3';
 
 /** Describes the function of the node */
 export enum NodeType {
-  UNKNOWN = "UNKNOWN",
-  ACTION = "ACTION",
-  EFFECT = "EFFECT",
-  METHOD = "METHOD",
-  REDUCER = "REDUCER"
+  UNKNOWN = 'UNKNOWN',
+  ACTION = 'ACTION',
+  EFFECT = 'EFFECT',
+  METHOD = 'METHOD',
+  REDUCER = 'REDUCER'
 }
 
 /**
@@ -38,7 +38,8 @@ export enum LinkStatus {
 }
 
 /**
- * Nodes extend d3's SimulationNodeDatum, and provide additional information such as name, path, etc
+ * Nodes extend d3's SimulationNodeDatum, and provide additional information
+ * such as name, path, etc
  */
 export interface Node extends SimulationNodeDatum {
   id: string;
@@ -52,7 +53,8 @@ export interface Node extends SimulationNodeDatum {
 }
 
 /**
- * Links extend d3's SimulationLinkDatum, and provide additional information such as path, line, etc
+ * Links extend d3's SimulationLinkDatum, and provide additional information
+ * such as path, line, etc
  */
 export interface Link extends SimulationLinkDatum<Node> {
   filePath?: string;
@@ -68,12 +70,12 @@ export interface Graph {
 
 /** Describes how a reference to an action is being used */
 export enum UsageType {
-  UNKNOWN = "UNKNOWN",
-  INSTANTIATE = "INSTANTIATE",
-  EFFECT = "EFFECT",
-  METHOD = "METHOD",
-  REDUCER = "REDUCER",
-  CONSTRUCTOR = "CONSTRUCTOR"
+  UNKNOWN = 'UNKNOWN',
+  INSTANTIATE = 'INSTANTIATE',
+  EFFECT = 'EFFECT',
+  METHOD = 'METHOD',
+  REDUCER = 'REDUCER',
+  CONSTRUCTOR = 'CONSTRUCTOR'
 }
 
 /** Exported usage of a reference */
@@ -107,6 +109,9 @@ export interface CachedGraph {
   display: string;
   /** Original data */
   json: string;
-  /** The processed d3 graph, used to restore node positions (to avoid processing again) */
+  /**
+   * The processed d3 graph, used to restore node positions (to avoid
+   * processing again)
+   */
   graph: Graph;
 }

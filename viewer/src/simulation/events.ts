@@ -16,9 +16,9 @@
 
 /** Events that affect the simulation */
 
-import { Node, NodeType } from "../common/types";
-import { updateD3Engine, updateD3SimData } from "./internal";
-import { Simulation } from "./simulation";
+import {Node, NodeType} from '../common/types';
+import {updateD3Engine, updateD3SimData} from './internal';
+import {Simulation} from './simulation';
 
 /** When visibility checkboxes are changed, update the visible nodes */
 export function onVisibilityChange(sim: Simulation, visibility: any) {
@@ -26,17 +26,17 @@ export function onVisibilityChange(sim: Simulation, visibility: any) {
   Turn on all non-action nodes (any node that is not ACTION or REDUCER)
   Set all nodes that are actions to their visibility input
   Create a new mapping for the result visibilities
-  For every link, if source and target are visibile, set it to visible in the new mapping
-  Set all nodes visibilites to the result visibility
+  For every link, if source and target are visibile, set it to visible in the
+  new mapping Set all nodes visibilites to the result visibility
   */
-  const hiddenMap: { [key: string]: boolean } = {};
+  const hiddenMap: {[key: string]: boolean} = {};
   for (const node of sim.graph.nodes) {
     hiddenMap[node.id] = true;
     if (node.type !== NodeType.ACTION && node.type !== NodeType.REDUCER) {
       node.hidden = false;
     } else {
       node.hidden =
-        visibility[node.id] === undefined ? false : !visibility[node.id];
+          visibility[node.id] === undefined ? false : !visibility[node.id];
       hiddenMap[node.id] = !visibility[node.id];
     }
   }

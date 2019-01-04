@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-import { NodeWrap } from "tsutils";
-import * as ts from "typescript";
-import { SyntaxKind } from "typescript";
+import {NodeWrap} from 'tsutils';
+import * as ts from 'typescript';
+import {SyntaxKind} from 'typescript';
 
-import { UsageType } from "../common/types";
-import { formatPath } from "../common/utils";
-import * as utils from "../wrapped_utils";
+import {UsageType} from '../common/types';
+import {formatPath} from '../common/utils';
+import * as utils from '../wrapped_utils';
 
-import { Usage } from "./usage";
+import {Usage} from './usage';
 
 /** Description of a node inside a "new" statement */
 export class InstantiateUsage extends Usage {
@@ -41,15 +41,11 @@ export class InstantiateUsage extends Usage {
   }
 
   private static isWithinInstantiation(
-    node: NodeWrap,
-    sourceFile: ts.SourceFile
-  ): boolean {
+      node: NodeWrap, sourceFile: ts.SourceFile): boolean {
     // Get the outermost block by going up property access expressions
     // Example: new a.b.c with node pointing to c, highestBlock = a.b.c
     let highestBlock = utils.getParentWhile(
-      node,
-      p => p.kind === SyntaxKind.PropertyAccessExpression
-    );
+        node, p => p.kind === SyntaxKind.PropertyAccessExpression);
 
     if (highestBlock === undefined) {
       highestBlock = node;

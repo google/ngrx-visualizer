@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import { Node } from "../common/types";
+import {Node} from '../common/types';
 
-import { LiteEvent } from "./lite_event";
-import { SidebarUI } from "./sidebar";
+import {LiteEvent} from './lite_event';
+import {SidebarUI} from './sidebar';
 
 /** Searches through nodes for names matching input */
 export class SearchUI {
@@ -30,30 +30,27 @@ export class SearchUI {
   onClickResult = new LiteEvent<string>();
 
   constructor(
-    private readonly documentRef: HTMLDocument,
-    private readonly sidebar: SidebarUI
-  ) {
-    this.sidebarButton = this.documentRef.getElementById(
-      "sidebar-search-button"
-    );
-    this.searchBox = this.documentRef.getElementById(
-      "search-box"
-    ) as HTMLInputElement;
-    this.searchForm = document.getElementById("search-form") as HTMLFormElement;
-    this.searchResults = document.getElementById("search-results");
+      private readonly documentRef: HTMLDocument,
+      private readonly sidebar: SidebarUI) {
+    this.sidebarButton =
+        this.documentRef.getElementById('sidebar-search-button');
+    this.searchBox =
+        this.documentRef.getElementById('search-box') as HTMLInputElement;
+    this.searchForm = document.getElementById('search-form') as HTMLFormElement;
+    this.searchResults = document.getElementById('search-results');
 
     this.initElements();
   }
 
   /** Set the results of the search box */
   setResults(results: Node[]) {
-    this.searchResults.innerHTML = "";
+    this.searchResults.innerHTML = '';
     for (let i = 0; i < results.length; i++) {
       const currentResult = results[i];
-      const elem = document.createElement("a");
-      elem.href = "#";
+      const elem = document.createElement('a');
+      elem.href = '#';
       elem.textContent = currentResult.name;
-      elem.addEventListener("click", clickEvent => {
+      elem.addEventListener('click', clickEvent => {
         clickEvent.preventDefault();
         this.onClickResult.trigger(currentResult.id);
       });
@@ -62,13 +59,13 @@ export class SearchUI {
   }
 
   private initElements() {
-    this.sidebarButton.addEventListener("click", () => {
-      if (this.sidebar.setContent("sidebar-search", true)) {
+    this.sidebarButton.addEventListener('click', () => {
+      if (this.sidebar.setContent('sidebar-search', true)) {
         setTimeout(() => this.searchBox.focus(), 250);
       }
     });
 
-    this.searchForm.addEventListener("submit", event => {
+    this.searchForm.addEventListener('submit', event => {
       event.preventDefault();
       this.onSearch.trigger(this.searchBox.value);
     });

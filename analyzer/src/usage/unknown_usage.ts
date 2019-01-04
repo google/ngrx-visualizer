@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import { NodeWrap } from "tsutils";
-import * as ts from "typescript";
-import { UsageType } from "../common/types";
-import { Usage } from "./usage";
+import {NodeWrap} from 'tsutils';
+import * as ts from 'typescript';
+import {UsageType} from '../common/types';
+import {Usage} from './usage';
 
 /** Description of an unknown node */
 export class UnknownUsage extends Usage {
@@ -28,7 +28,7 @@ export class UnknownUsage extends Usage {
   }
 
   toString(): string {
-    return "Unknown";
+    return 'Unknown';
   }
 
   static matches(node: NodeWrap): boolean {

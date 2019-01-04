@@ -16,16 +16,7 @@
 
 /** Decodes analyzer output into d3 graph structure */
 
-import {
-  ActionExport,
-  Graph,
-  LinkStatus,
-  NamedUsageExport,
-  NodeType,
-  ReferenceExport,
-  UsageExport,
-  UsageType
-} from "./common/types";
+import {ActionExport, Graph, LinkStatus, NamedUsageExport, NodeType, ReferenceExport, UsageExport, UsageType} from './common/types';
 
 /** Convert action to unique ID */
 export function actionToID(action: ActionExport): string {
@@ -34,23 +25,21 @@ export function actionToID(action: ActionExport): string {
 
 /** Convert usage to unique ID */
 export function usageToID(
-  reference: ReferenceExport,
-  usage: UsageExport
-): string {
+    reference: ReferenceExport, usage: UsageExport): string {
   return `${usage.type}::${reference.filePath}`;
 }
 
 /** Convert named usage to unique ID */
 export function namedUsageToID(
-  reference: ReferenceExport,
-  usage: NamedUsageExport
-): string {
+    reference: ReferenceExport, usage: NamedUsageExport): string {
   return `${usage.type}::${reference.filePath}::${usage.name}`;
 }
 
-/** Convert usage type to node type (allows constructors to become method nodes) */
+/**
+ * Convert usage type to node type (allows constructors to become method nodes)
+ */
 export function usageTypeToNodeType(type: UsageType): NodeType {
-  const map: { [key: string]: NodeType } = {
+  const map: {[key: string]: NodeType} = {
     [UsageType.EFFECT]: NodeType.EFFECT,
     [UsageType.METHOD]: NodeType.METHOD,
     [UsageType.CONSTRUCTOR]: NodeType.METHOD,
@@ -60,19 +49,18 @@ export function usageTypeToNodeType(type: UsageType): NodeType {
   return map[type];
 }
 
-/** Given a reference with multiple usages, decide which usage type it should be */
+/**
+ * Given a reference with multiple usages, decide which usage type it should be
+ */
 export function classifyReference(reference: ReferenceExport): UsageExport {
-  const usageTypes: { [key: string]: UsageExport } = {};
+  const usageTypes: {[key: string]: UsageExport} = {};
   for (const usage of reference.usages) {
     usageTypes[usage.type] = usage;
   }
 
   const priority = [
-    UsageType.REDUCER,
-    UsageType.EFFECT,
-    UsageType.METHOD,
-    UsageType.CONSTRUCTOR,
-    UsageType.UNKNOWN
+    UsageType.REDUCER, UsageType.EFFECT, UsageType.METHOD,
+    UsageType.CONSTRUCTOR, UsageType.UNKNOWN
   ];
 
   for (const type of priority) {
@@ -87,7 +75,9 @@ export function isNamedUsage(usage: any): usage is NamedUsageExport {
   return usage.name !== undefined;
 }
 
-/** Convert reference to unique ID by classifying its most important usage type */
+/**
+ * Convert reference to unique ID by classifying its most important usage type
+ */
 export function referenceToID(reference: ReferenceExport): string {
   const usage = classifyReference(reference);
   if (isNamedUsage(usage)) {
@@ -100,7 +90,8 @@ export function referenceToID(reference: ReferenceExport): string {
  * Decodes analyzer output into a d3 graph
  *
  * @param json JSON data.
- * @param reducerLength The number of folders of the filePath to put into the reducer node name.
+ * @param reducerLength The number of folders of the filePath to put into the
+ *     reducer node name.
  */
 export function decodeJSON(json: string, reducerLength: number) {
   return decode(JSON.parse(json), reducerLength);
@@ -110,22 +101,20 @@ export function decodeJSON(json: string, reducerLength: number) {
  * Decodes analyzer output into a d3 graph
  *
  * @param actionExports Parsed analyzer output.
- * @param reducerLength The number of folders of the filePath to put into the reducer node name.
+ * @param reducerLength The number of folders of the filePath to put into the
+ *     reducer node name.
  */
 export function decode(
-  actionExports: ActionExport[],
-  reducerLength: number
-): Graph {
+    actionExports: ActionExport[], reducerLength: number): Graph {
   // Filter out empty or useless results
   for (const action of actionExports) {
     action.references = action.references.filter(
-      r =>
-        r.usages.length !== 0 &&
-        !(r.usages.length === 1 && r.usages[0].type === UsageType.INSTANTIATE)
-    );
+        r => r.usages.length !== 0 &&
+            !(r.usages.length === 1 &&
+              r.usages[0].type === UsageType.INSTANTIATE));
   }
 
-  const keyToObject: { [key: string]: ActionExport | ReferenceExport } = {};
+  const keyToObject: {[key: string]: ActionExport|ReferenceExport} = {};
 
   for (const action of actionExports) {
     keyToObject[actionToID(action)] = action;
@@ -134,11 +123,11 @@ export function decode(
     }
   }
 
-  const graph: Graph = { links: [], nodes: [] };
+  const graph: Graph = {links: [], nodes: []};
   const links = graph.links;
   const nodes = graph.nodes;
-  const usedNode: { [key: string]: boolean } = {};
-  const usedLink: { [key: string]: boolean } = {};
+  const usedNode: {[key: string]: boolean} = {};
+  const usedLink: {[key: string]: boolean} = {};
 
   for (const action of actionExports) {
     nodes.push({
@@ -153,8 +142,8 @@ export function decode(
       const classified = classifyReference(reference) as NamedUsageExport;
       let name = classified.name;
       if (classified.type === UsageType.REDUCER) {
-        const split = reference.filePath.split("/");
-        name = split.slice(split.length - reducerLength).join("/");
+        const split = reference.filePath.split('/');
+        name = split.slice(split.length - reducerLength).join('/');
       }
       if (!usedNode[referenceID]) {
         nodes.push({

@@ -14,37 +14,33 @@
  * limitations under the License.
  */
 
-import { NodeWrap } from "tsutils";
-import * as ts from "typescript";
+import {NodeWrap} from 'tsutils';
+import * as ts from 'typescript';
 
-import { ActionExport } from "./common/types";
-import { formatPath, getArgs } from "./common/utils";
-import { Reference } from "./reference";
-import * as utils from "./wrapped_utils";
+import {ActionExport} from './common/types';
+import {formatPath, getArgs} from './common/utils';
+import {Reference} from './reference';
+import * as utils from './wrapped_utils';
 
 /** Holds references to an action */
 export class Action {
   references: Reference[] = [];
 
   constructor(
-    readonly classDeclaration: NodeWrap,
-    readonly identifier: NodeWrap,
-    readonly sourceFile: ts.SourceFile,
-    readonly program: ts.Program
-  ) {}
+      readonly classDeclaration: NodeWrap, readonly identifier: NodeWrap,
+      readonly sourceFile: ts.SourceFile, readonly program: ts.Program) {}
 
   toString() {
-    return `Action::${formatPath(this.sourceFile.fileName)}::${utils
-      .getTypeAsText(this.identifier, this.program)
-      .replace('"', "")
-      .replace('"', "")}`;
+    return `Action::${formatPath(this.sourceFile.fileName)}::${
+        utils.getTypeAsText(this.identifier, this.program)
+            .replace('"', '')
+            .replace('"', '')}`;
   }
 
   getName(): string {
-    return utils
-      .getTypeAsText(this.identifier, this.program)
-      .replace('"', "")
-      .replace('"', "");
+    return utils.getTypeAsText(this.identifier, this.program)
+        .replace('"', '')
+        .replace('"', '');
   }
 
   /** An exported version of this action */
@@ -52,12 +48,12 @@ export class Action {
     return {
       name: this.getName(),
       filePath: formatPath(this.sourceFile.fileName),
-      line: this.sourceFile.getLineAndCharacterOfPosition(
-        this.classDeclaration.node.getStart()
-      ).line,
-      references: this.references
-        .map(r => r.export())
-        .filter(r => r.usages.length !== 0 || getArgs().emptyRef)
+      line: this.sourceFile
+                .getLineAndCharacterOfPosition(
+                    this.classDeclaration.node.getStart())
+                .line,
+      references: this.references.map(r => r.export())
+                      .filter(r => r.usages.length !== 0 || getArgs().emptyRef)
     };
   }
 }

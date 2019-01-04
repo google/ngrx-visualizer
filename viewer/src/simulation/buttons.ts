@@ -16,14 +16,14 @@
 
 /** Buttons that affect the simulation */
 
-import * as Fuse from "fuse-js-latest";
+import * as Fuse from 'fuse-js-latest';
 
-import { Node, NodeType } from "../common/types";
-import { setGraphJSON, zoomToNode } from "./actions";
-import { onVisibilityChange } from "./events";
-import { updateD3EngineAndReset, updateD3SimData } from "./internal";
-import { cacheAndLoadGraph } from "./params";
-import { Simulation } from "./simulation";
+import {Node, NodeType} from '../common/types';
+import {setGraphJSON, zoomToNode} from './actions';
+import {onVisibilityChange} from './events';
+import {updateD3EngineAndReset, updateD3SimData} from './internal';
+import {cacheAndLoadGraph} from './params';
+import {Simulation} from './simulation';
 
 /** Recreates the visibility sidebar DOM */
 export function initVisibility(sim: Simulation) {
@@ -31,7 +31,7 @@ export function initVisibility(sim: Simulation) {
 
   for (const node of sim.originalGraph.nodes) {
     if (node.type === NodeType.ACTION) {
-      const path = node.filePath.split("/");
+      const path = node.filePath.split('/');
       let cur = tree;
       for (const elem of path) {
         cur[elem] = cur[elem] || {};
@@ -54,7 +54,7 @@ export function initSearch(sim: Simulation) {
   sim.ui.search.onSearch.on(text => {
     const optionsFuse = {
       distance: 100,
-      keys: ["name"],
+      keys: ['name'],
       location: 0,
       maxPatternLength: 32,
       minMatchCharLength: 1,
@@ -69,18 +69,18 @@ export function initSearch(sim: Simulation) {
 
 /** Binds the ease button to spread out the graph when held down */
 export function initEaseButton(sim: Simulation) {
-  sim.ui.sidebar.easeButton.addEventListener("mousedown", () => {
+  sim.ui.sidebar.easeButton.addEventListener('mousedown', () => {
     sim.d3sim.alphaTarget(1).restart();
   });
 
-  sim.ui.sidebar.easeButton.addEventListener("mouseup", () => {
+  sim.ui.sidebar.easeButton.addEventListener('mouseup', () => {
     sim.d3sim.alphaTarget(0);
   });
 }
 
 /** Binds the refresh button to reload the graph when clicked. */
 export function initRefreshButton(sim: Simulation) {
-  sim.ui.sidebar.refreshButton.addEventListener("click", () => {
+  sim.ui.sidebar.refreshButton.addEventListener('click', () => {
     if (sim.options.loadParam) {
       // If we are using a loaded graph, redownload it.
       sim.ui.loading.setVisible(true);
@@ -111,7 +111,7 @@ export function initOpenFileButton(sim: Simulation) {
 
 /** Binds the copy button to copy the current URL to clipboard */
 export function initCopyButton(sim: Simulation) {
-  sim.ui.sidebar.copyButton.addEventListener("click", () => {
+  sim.ui.sidebar.copyButton.addEventListener('click', () => {
     sim.ui.copyTextToClipboard(window.location.toString());
   });
 }

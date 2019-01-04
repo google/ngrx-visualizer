@@ -14,37 +14,32 @@
  * limitations under the License.
  */
 
-import { BottombarUI } from "./bottombar";
-import { DetailsUI } from "./details";
-import { LoadingDialogUI } from "./loading_dialog";
+import {Node, NodeType} from '../common/types';
 
-import { Node, NodeType } from "../common/types";
-import { SearchUI } from "./search";
-import { SettingsUI } from "./settings";
-import { SidebarUI } from "./sidebar";
-import { VisibilityUI } from "./visibility";
+import {BottombarUI} from './bottombar';
+import {DetailsUI} from './details';
+import {LoadingDialogUI} from './loading_dialog';
+import {SearchUI} from './search';
+import {SettingsUI} from './settings';
+import {SidebarUI} from './sidebar';
+import {VisibilityUI} from './visibility';
 
 /** Contains all UI elements of the application */
 export class UI {
   constructor(
-    readonly document: HTMLDocument,
-    readonly settings: SettingsUI,
-    readonly sidebar: SidebarUI,
-    readonly search: SearchUI,
-    readonly visibility: VisibilityUI,
-    readonly bottombar: BottombarUI,
-    readonly details: DetailsUI,
-    readonly loading: LoadingDialogUI
-  ) {}
+      readonly document: HTMLDocument, readonly settings: SettingsUI,
+      readonly sidebar: SidebarUI, readonly search: SearchUI,
+      readonly visibility: VisibilityUI, readonly bottombar: BottombarUI,
+      readonly details: DetailsUI, readonly loading: LoadingDialogUI) {}
 
   /** Gives d3 node circle colors */
   nodeColor(d: Node) {
     return {
-      [NodeType.UNKNOWN]: "black",
-      [NodeType.ACTION]: "red",
-      [NodeType.EFFECT]: "yellow",
-      [NodeType.METHOD]: "brown",
-      [NodeType.REDUCER]: "blue"
+      [NodeType.UNKNOWN]: 'black',
+      [NodeType.ACTION]: 'red',
+      [NodeType.EFFECT]: 'yellow',
+      [NodeType.METHOD]: 'brown',
+      [NodeType.REDUCER]: 'blue'
     }[d.type];
   }
 
@@ -61,10 +56,10 @@ export class UI {
         return;
       }
     }
-    const head = document.getElementsByTagName("head")[0];
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.type = "text/css";
+    const head = document.getElementsByTagName('head')[0];
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
     link.href = href;
     link.id = id;
     if (callback) {
@@ -88,28 +83,28 @@ export class UI {
 
   // https://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript
   copyTextToClipboard(text: string): boolean {
-    const textArea = document.createElement("textarea");
+    const textArea = document.createElement('textarea');
 
     // Place in top-left corner of screen regardless of scroll position.
-    textArea.style.position = "fixed";
-    textArea.style.top = "0";
-    textArea.style.left = "0";
+    textArea.style.position = 'fixed';
+    textArea.style.top = '0';
+    textArea.style.left = '0';
 
     // Ensure it has a small width and height. Setting to 1px / 1em
     // doesn't work as this gives a negative w/h on some browsers.
-    textArea.style.width = "2em";
-    textArea.style.height = "2em";
+    textArea.style.width = '2em';
+    textArea.style.height = '2em';
 
     // We don't need padding, reducing the size if it does flash render.
-    textArea.style.padding = "0";
+    textArea.style.padding = '0';
 
     // Clean up any borders.
-    textArea.style.border = "none";
-    textArea.style.outline = "none";
-    textArea.style.boxShadow = "none";
+    textArea.style.border = 'none';
+    textArea.style.outline = 'none';
+    textArea.style.boxShadow = 'none';
 
     // Avoid flash of white box if rendered for any reason.
-    textArea.style.background = "transparent";
+    textArea.style.background = 'transparent';
 
     textArea.value = text;
 
@@ -119,7 +114,7 @@ export class UI {
 
     let successful = false;
     try {
-      successful = document.execCommand("copy");
+      successful = document.execCommand('copy');
     } catch (err) {
       // Ignore
     }

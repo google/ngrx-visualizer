@@ -16,12 +16,12 @@
 
 /** Describes how a reference to an action is being used */
 export enum UsageType {
-  UNKNOWN = "UNKNOWN",
-  INSTANTIATE = "INSTANTIATE",
-  EFFECT = "EFFECT",
-  METHOD = "METHOD",
-  REDUCER = "REDUCER",
-  CONSTRUCTOR = "CONSTRUCTOR"
+  UNKNOWN = 'UNKNOWN',
+  INSTANTIATE = 'INSTANTIATE',
+  EFFECT = 'EFFECT',
+  METHOD = 'METHOD',
+  REDUCER = 'REDUCER',
+  CONSTRUCTOR = 'CONSTRUCTOR'
 }
 
 /** Exported usage of a reference */

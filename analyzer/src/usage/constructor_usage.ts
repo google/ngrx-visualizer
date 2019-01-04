@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-import { NodeWrap } from "tsutils";
-import * as ts from "typescript";
-import { SyntaxKind } from "typescript";
+import {NodeWrap} from 'tsutils';
+import * as ts from 'typescript';
+import {SyntaxKind} from 'typescript';
 
-import { UsageType } from "../common/types";
-import { NamedUsageExport } from "../common/types";
-import * as utils from "../wrapped_utils";
+import {UsageType} from '../common/types';
+import {NamedUsageExport} from '../common/types';
+import * as utils from '../wrapped_utils';
 
-import { Usage } from "./usage";
+import {Usage} from './usage';
 
 /** Description of a node inside a constructor */
 export class ConstructorUsage extends Usage {
@@ -37,33 +37,31 @@ export class ConstructorUsage extends Usage {
   }
 
   toName(): string {
-    const classDeclaration = utils.getFirstAncestorByKind(
-      this.node,
-      SyntaxKind.ClassDeclaration
-    );
+    const classDeclaration =
+        utils.getFirstAncestorByKind(this.node, SyntaxKind.ClassDeclaration);
 
     if (!classDeclaration) {
-      return "Unknown";
+      return 'Unknown';
     }
 
     const className = (classDeclaration.node as ts.ClassDeclaration).name;
 
     if (!className) {
-      return "Unknown";
+      return 'Unknown';
     }
 
     return className.getText(this.sourceFile);
   }
 
   export(): NamedUsageExport {
-    return { ...super.export(), name: this.toName() };
+    return {...super.export(), name: this.toName()};
   }
 
   static matches(node: NodeWrap): boolean {
     return !!ConstructorUsage.getConstructor(node);
   }
 
-  private static getConstructor(node: NodeWrap): NodeWrap | undefined {
+  private static getConstructor(node: NodeWrap): NodeWrap|undefined {
     return utils.getFirstAncestorByKind(node, SyntaxKind.Constructor);
   }
 }

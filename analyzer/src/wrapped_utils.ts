@@ -14,14 +14,12 @@
  * limitations under the License.
  */
 
-import { NodeWrap, WrappedAst } from "tsutils";
-import * as ts from "typescript";
+import {NodeWrap, WrappedAst} from 'tsutils';
+import * as ts from 'typescript';
 
 /** Get the first child of given kind */
 export function getChildOfKind<T extends ts.SyntaxKind>(
-  node: NodeWrap,
-  kind: T
-): NodeWrap | undefined {
+    node: NodeWrap, kind: T): NodeWrap|undefined {
   for (const child of node.children) {
     if (child.kind === kind) {
       return child;
@@ -32,9 +30,7 @@ export function getChildOfKind<T extends ts.SyntaxKind>(
 
 /** Get all children of a given kind */
 export function getChildrenOfKind<T extends ts.SyntaxKind>(
-  node: NodeWrap,
-  kind: T
-): NodeWrap[] {
+    node: NodeWrap, kind: T): NodeWrap[] {
   const res = [];
   for (const child of node.children) {
     if (child.kind === kind) {
@@ -46,9 +42,7 @@ export function getChildrenOfKind<T extends ts.SyntaxKind>(
 
 /** Get every node down the tree */
 export function getDescendantsOfKind<T extends ts.SyntaxKind>(
-  node: NodeWrap,
-  kind: T
-): NodeWrap[] {
+    node: NodeWrap, kind: T): NodeWrap[] {
   const res: NodeWrap[] = [];
   function r(node: NodeWrap) {
     if (node.kind === kind) {
@@ -66,10 +60,8 @@ export function getDescendantsOfKind<T extends ts.SyntaxKind>(
 
 /** Get first node of type down the tree */
 export function getFirstDescendantOfKind<T extends ts.SyntaxKind>(
-  node: NodeWrap,
-  kind: T
-): NodeWrap | undefined {
-  let res: NodeWrap | undefined = undefined;
+    node: NodeWrap, kind: T): NodeWrap|undefined {
+  let res: NodeWrap|undefined = undefined;
   let found = false;
   function r(node: NodeWrap) {
     if (node.kind === kind) {
@@ -98,10 +90,9 @@ export function getFirstDescendantOfKind<T extends ts.SyntaxKind>(
  * condition.
  */
 export function getParentWhile(
-  node: NodeWrap,
-  condition: (node: NodeWrap) => boolean
-): NodeWrap | undefined {
-  let parent: NodeWrap | undefined = undefined;
+    node: NodeWrap, condition: (node: NodeWrap) => boolean): NodeWrap|
+    undefined {
+  let parent: NodeWrap|undefined = undefined;
   let nextParent = node.parent;
   while (nextParent != null && condition(nextParent)) {
     parent = nextParent;
@@ -129,12 +120,11 @@ export function getClassDeclarations(ast: WrappedAst): NodeWrap[] {
 
 /** Convert ts.Type to text */
 export function typeToString(type: ts.Type, program: ts.Program): string {
-  return program
-    .getTypeChecker()
-    .typeToString(type, undefined, (ts.TypeFormatFlags.UseTypeOfFunction |
-      ts.TypeFormatFlags.NoTruncation |
-      ts.TypeFormatFlags.UseFullyQualifiedType |
-      ts.TypeFormatFlags.WriteTypeArgumentsOfSignature) as ts.TypeFormatFlags);
+  return program.getTypeChecker().typeToString(
+      type, undefined,
+      (ts.TypeFormatFlags.UseTypeOfFunction | ts.TypeFormatFlags.NoTruncation |
+       ts.TypeFormatFlags.UseFullyQualifiedType |
+       ts.TypeFormatFlags.WriteTypeArgumentsOfSignature) as ts.TypeFormatFlags);
 }
 
 /** Get type of NodeWrap */

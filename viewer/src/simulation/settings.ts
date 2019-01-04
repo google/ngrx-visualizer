@@ -16,15 +16,11 @@
 
 /** Settings dialog interaction with simulation */
 
-import { LinkStatus } from "../common/types";
-import { getData, storeData } from "../ui/utils";
-import { onVisibilityChange } from "./events";
-import {
-  updateD3Engine,
-  updateD3EngineAndReset,
-  updateD3SimData
-} from "./internal";
-import { Simulation } from "./simulation";
+import {LinkStatus} from '../common/types';
+import {getData, storeData} from '../ui/utils';
+import {onVisibilityChange} from './events';
+import {updateD3Engine, updateD3EngineAndReset, updateD3SimData} from './internal';
+import {Simulation} from './simulation';
 
 export interface SavedSettings {
   colorScheme: string;
@@ -33,7 +29,7 @@ export interface SavedSettings {
 
 /** Setting that switches graph modes */
 export function initDisplayModeSetting(sim: Simulation) {
-  sim.ui.settings.displayModeSelect.addEventListener("change", () => {
+  sim.ui.settings.displayModeSelect.addEventListener('change', () => {
     updateGraphDisplayMode(sim);
 
     for (const link of sim.graph.links) {
@@ -48,38 +44,38 @@ export function initDisplayModeSetting(sim: Simulation) {
 
 /** Setting that changes color scheme */
 export function initStyleSetting(sim: Simulation) {
-  sim.ui.settings.styleSelect.addEventListener("change", () => {
-    const styleID = "color-scheme-style";
+  sim.ui.settings.styleSelect.addEventListener('change', () => {
+    const styleID = 'color-scheme-style';
     sim.ui.unloadStyle(styleID);
-    if (sim.ui.settings.styleSelect.value === "dark") {
-      sim.ui.loadStyle("dark.css", styleID);
+    if (sim.ui.settings.styleSelect.value === 'dark') {
+      sim.ui.loadStyle('dark.css', styleID);
     }
-    saveSetting("colorScheme", sim.ui.settings.styleSelect.value);
+    saveSetting('colorScheme', sim.ui.settings.styleSelect.value);
   });
 }
 
 /** Settings that changes graphics quality */
 export function initGraphicsSetting(sim: Simulation) {
-  sim.ui.settings.graphicsSelect.addEventListener("change", () => {
-    const styleID = "graphics-style";
+  sim.ui.settings.graphicsSelect.addEventListener('change', () => {
+    const styleID = 'graphics-style';
     sim.ui.unloadStyle(styleID);
-    if (sim.ui.settings.graphicsSelect.value === "fast") {
-      sim.ui.loadStyle("fast.css", styleID);
+    if (sim.ui.settings.graphicsSelect.value === 'fast') {
+      sim.ui.loadStyle('fast.css', styleID);
     }
-    saveSetting("graphicsQuality", sim.ui.settings.graphicsSelect.value);
+    saveSetting('graphicsQuality', sim.ui.settings.graphicsSelect.value);
   });
 }
 
 /** Sets graph mode from settings */
 export function updateGraphDisplayMode(sim: Simulation) {
   const value = sim.ui.settings.displayModeSelect.value;
-  if (value === "splitreducers") {
+  if (value === 'splitreducers') {
     sim.graph = sim.graphSplitReducers;
   }
-  if (value === "noreducers") {
+  if (value === 'noreducers') {
     sim.graph = sim.graphNoReducers;
   }
-  if (value === "reducers") {
+  if (value === 'reducers') {
     sim.graph = sim.originalGraph;
   }
 }
@@ -91,20 +87,20 @@ export function updateGraphDisplayMode(sim: Simulation) {
  * @param value The value of the setting.
  */
 export function saveSetting(key: keyof SavedSettings, value: any) {
-  const settings = (getData("settings") || {}) as SavedSettings;
+  const settings = (getData('settings') || {}) as SavedSettings;
   settings[key] = value;
-  storeData("settings", settings, 100000);
+  storeData('settings', settings, 100000);
 }
 
 /** Restores all settings of the simulation. */
 export function loadSettings(sim: Simulation) {
-  const settings = (getData("settings") || {}) as SavedSettings;
+  const settings = (getData('settings') || {}) as SavedSettings;
   if (settings.colorScheme !== undefined) {
     sim.ui.settings.styleSelect.value = settings.colorScheme;
-    sim.ui.settings.styleSelect.dispatchEvent(new Event("change"));
+    sim.ui.settings.styleSelect.dispatchEvent(new Event('change'));
   }
   if (settings.graphicsQuality !== undefined) {
     sim.ui.settings.graphicsSelect.value = settings.graphicsQuality;
-    sim.ui.settings.graphicsSelect.dispatchEvent(new Event("change"));
+    sim.ui.settings.graphicsSelect.dispatchEvent(new Event('change'));
   }
 }

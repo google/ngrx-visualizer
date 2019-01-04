@@ -16,14 +16,14 @@
 
 /** General actions the simulation does */
 
-import * as AnalysisDecoder from "../analysis_decoder";
+import * as AnalysisDecoder from '../analysis_decoder';
 
-import { Node } from "../common/types";
-import { NgrxGraph } from "../ngrx_graph";
-import { initVisibility } from "./buttons";
-import { updateD3EngineAndReset, updateD3SimData } from "./internal";
-import { updateGraphDisplayMode } from "./settings";
-import { Simulation } from "./simulation";
+import {Node} from '../common/types';
+import {NgrxGraph} from '../ngrx_graph';
+import {initVisibility} from './buttons';
+import {updateD3EngineAndReset, updateD3SimData} from './internal';
+import {updateGraphDisplayMode} from './settings';
+import {Simulation} from './simulation';
 
 /** Set status text on the loading dialog */
 export function loadStatus(sim: Simulation, text: string) {
@@ -38,11 +38,7 @@ export function loadStatus(sim: Simulation, text: string) {
  *     (expensive).
  */
 export function setGraphJSON(
-  sim: Simulation,
-  json: string,
-  reposition = true,
-  zoom = true
-) {
+    sim: Simulation, json: string, reposition = true, zoom = true) {
   const data = AnalysisDecoder.decodeJSON(json, sim.options.reducerLengthParam);
   sim.originalGraph = NgrxGraph.fromGraph(data);
   sim.graphSplitReducers = sim.originalGraph.withSplitReducers();
@@ -58,10 +54,8 @@ export function setGraphJSON(
 /** Zoom graph to a specific node */
 export function zoomToNode(sim: Simulation, id: string) {
   const node = sim.graph.getNodeFromID(id);
-  sim.svg
-    .transition()
-    .duration(1000)
-    .call(sim.zoomHandler.translateTo, node.x, node.y);
+  sim.svg.transition().duration(1000).call(
+      sim.zoomHandler.translateTo, node.x, node.y);
 }
 
 /**
@@ -77,7 +71,7 @@ export function zoomToGraph(sim: Simulation) {
   let minY = 0;
   let maxY = 0;
 
-  const nodeHasLinks: { [key: string]: boolean } = {};
+  const nodeHasLinks: {[key: string]: boolean} = {};
 
   for (const link of sim.graph.links) {
     nodeHasLinks[(link.source as Node).id] = true;
@@ -102,12 +96,8 @@ export function zoomToGraph(sim: Simulation) {
   if (sim.options.scaleParam !== undefined) {
     scale = sim.options.scaleParam;
   }
-  if (
-    !isNaN(translateX) &&
-    !isNaN(translateY) &&
-    !isNaN(scale) &&
-    scale !== Infinity
-  ) {
+  if (!isNaN(translateX) && !isNaN(translateY) && !isNaN(scale) &&
+      scale !== Infinity) {
     sim.svg.call(sim.zoomHandler.translateTo, translateX, translateY);
     sim.svg.call(sim.zoomHandler.scaleTo, scale);
   }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { LiteEvent } from "./lite_event";
+import {LiteEvent} from './lite_event';
 
 /** Pop up area on the side of the screen */
 export class SidebarUI {
@@ -33,24 +33,19 @@ export class SidebarUI {
   private width: number;
 
   constructor(
-    private readonly documentRef: HTMLDocument,
-    private readonly windowRef: Window,
-    readonly startWidth: number,
-    readonly contentIDs: string[]
-  ) {
-    this.container = this.documentRef.getElementById("sidebar-container");
-    this.easeButton = this.documentRef.getElementById("sidebar-ease-button");
-    this.refreshButton = this.documentRef.getElementById(
-      "sidebar-refresh-button"
-    );
-    this.openFileButton = this.documentRef.getElementById(
-      "sidebar-open-file-button"
-    );
-    this.copyButton = this.documentRef.getElementById("sidebar-copy-button");
-    this.fileSelect = this.documentRef.getElementById(
-      "sidebar-file-select"
-    ) as HTMLInputElement;
-    this.drag = this.documentRef.getElementsByClassName("sidebar-drag");
+      private readonly documentRef: HTMLDocument,
+      private readonly windowRef: Window, readonly startWidth: number,
+      readonly contentIDs: string[]) {
+    this.container = this.documentRef.getElementById('sidebar-container');
+    this.easeButton = this.documentRef.getElementById('sidebar-ease-button');
+    this.refreshButton =
+        this.documentRef.getElementById('sidebar-refresh-button');
+    this.openFileButton =
+        this.documentRef.getElementById('sidebar-open-file-button');
+    this.copyButton = this.documentRef.getElementById('sidebar-copy-button');
+    this.fileSelect = this.documentRef.getElementById('sidebar-file-select') as
+        HTMLInputElement;
+    this.drag = this.documentRef.getElementsByClassName('sidebar-drag');
 
     this.width = startWidth;
     this.setContent(contentIDs[0], false);
@@ -69,7 +64,7 @@ export class SidebarUI {
     }
     for (const content of this.contentIDs) {
       this.content = this.documentRef.getElementById(content);
-      this.content.style.width = "0px";
+      this.content.style.width = '0px';
     }
     this.content = this.documentRef.getElementById(id);
     this.recalculateStyle();
@@ -81,12 +76,12 @@ export class SidebarUI {
     let isResizing = false;
 
     for (let i = 0; i < this.drag.length; i++) {
-      this.drag[i].addEventListener("mousedown", e => {
+      this.drag[i].addEventListener('mousedown', e => {
         isResizing = true;
       });
     }
 
-    this.documentRef.addEventListener("mousemove", e => {
+    this.documentRef.addEventListener('mousemove', e => {
       if (!isResizing) {
         return;
       }
@@ -95,7 +90,7 @@ export class SidebarUI {
       this.recalculateStyle();
     });
 
-    this.documentRef.addEventListener("mouseup", e => {
+    this.documentRef.addEventListener('mouseup', e => {
       isResizing = false;
     });
   }
@@ -106,10 +101,10 @@ export class SidebarUI {
    * To subscribe, listen to the onFile event.
    */
   bindFile() {
-    this.openFileButton.addEventListener("click", () => {
+    this.openFileButton.addEventListener('click', () => {
       this.fileSelect.click();
     });
-    this.fileSelect.addEventListener("change", () => {
+    this.fileSelect.addEventListener('change', () => {
       this.onFile.trigger(this.fileSelect.files);
     });
   }
@@ -118,7 +113,7 @@ export class SidebarUI {
   recalculateStyle() {
     this.content.style.width = `${this.width}px`;
     if (this.visible) {
-      this.container.style.right = "0px";
+      this.container.style.right = '0px';
     } else {
       this.container.style.right = `-${this.width}px`;
     }

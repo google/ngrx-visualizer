@@ -25,14 +25,12 @@ export class BottombarUI {
   private height: number;
 
   constructor(
-    private readonly documentRef: HTMLDocument,
-    private readonly windowRef: Window,
-    readonly startHeight: number
-  ) {
-    this.container = this.documentRef.getElementById("bottombar-container");
-    this.content = this.documentRef.getElementById("bottombar");
-    this.drag = this.documentRef.getElementById("bottombar-drag");
-    this.details = this.documentRef.getElementById("details");
+      private readonly documentRef: HTMLDocument,
+      private readonly windowRef: Window, readonly startHeight: number) {
+    this.container = this.documentRef.getElementById('bottombar-container');
+    this.content = this.documentRef.getElementById('bottombar');
+    this.drag = this.documentRef.getElementById('bottombar-drag');
+    this.details = this.documentRef.getElementById('details');
 
     this.height = startHeight;
     this.recalculateStyle();
@@ -44,11 +42,11 @@ export class BottombarUI {
   bindResize() {
     let isResizing = false;
 
-    this.drag.addEventListener("mousedown", e => {
+    this.drag.addEventListener('mousedown', e => {
       isResizing = true;
     });
 
-    this.documentRef.addEventListener("mousemove", e => {
+    this.documentRef.addEventListener('mousemove', e => {
       if (!isResizing) {
         return;
       }
@@ -57,7 +55,7 @@ export class BottombarUI {
       this.recalculateStyle();
     });
 
-    this.documentRef.addEventListener("mouseup", e => {
+    this.documentRef.addEventListener('mouseup', e => {
       isResizing = false;
     });
   }
@@ -67,11 +65,11 @@ export class BottombarUI {
     this.content.style.height = `${this.height}px`;
     this.details.style.height = `${this.height}px`;
     if (this.visible) {
-      this.container.style.bottom = "0px";
-      this.container.classList.add("visible");
+      this.container.style.bottom = '0px';
+      this.container.classList.add('visible');
     } else {
       this.container.style.bottom = `-${this.height}px`;
-      this.container.classList.remove("visible");
+      this.container.classList.remove('visible');
     }
   }
 

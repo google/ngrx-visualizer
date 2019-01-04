@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-import { NodeWrap } from "tsutils";
-import * as ts from "typescript";
-import { SyntaxKind } from "typescript";
+import {NodeWrap} from 'tsutils';
+import * as ts from 'typescript';
+import {SyntaxKind} from 'typescript';
 
-import { UsageType } from "../common/types";
-import { NamedUsageExport } from "../common/types";
-import { formatPath } from "../common/utils";
-import * as utils from "../wrapped_utils";
+import {UsageType} from '../common/types';
+import {NamedUsageExport} from '../common/types';
+import {formatPath} from '../common/utils';
+import * as utils from '../wrapped_utils';
 
-import { Usage } from "./usage";
+import {Usage} from './usage';
 
 /** Description of a node inside a method */
 export class MethodUsage extends Usage {
@@ -41,27 +41,27 @@ export class MethodUsage extends Usage {
     const declaration = MethodUsage.getMethodDeclaration(this.node);
 
     if (!declaration) {
-      return "Unknown";
+      return 'Unknown';
     }
 
     const declarationName = (declaration.node as ts.MethodDeclaration).name;
 
     if (!declarationName) {
-      return "Unknown";
+      return 'Unknown';
     }
 
     return declarationName.getText(this.sourceFile);
   }
 
   export(): NamedUsageExport {
-    return { ...super.export(), name: this.toName() };
+    return {...super.export(), name: this.toName()};
   }
 
   static matches(node: NodeWrap): boolean {
     return !!MethodUsage.getMethodDeclaration(node);
   }
 
-  private static getMethodDeclaration(node: NodeWrap): NodeWrap | undefined {
+  private static getMethodDeclaration(node: NodeWrap): NodeWrap|undefined {
     return utils.getFirstAncestorByKind(node, SyntaxKind.MethodDeclaration);
   }
 }

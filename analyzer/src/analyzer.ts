@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-import * as commander from "commander";
-import * as fs from "fs";
-import * as path from "path";
-import * as ts from "typescript";
+import * as commander from 'commander';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as ts from 'typescript';
 
-import { ActionExport } from "./common/types";
-import { endsWith, setArgs } from "./common/utils";
-import { ProjectAnalyzer } from "./project_analyzer";
+import {ActionExport} from './common/types';
+import {endsWith, setArgs} from './common/utils';
+import {ProjectAnalyzer} from './project_analyzer';
 
 export interface AnalyzerOptions {
   actions: string;
@@ -36,7 +36,7 @@ export interface AnalyzerOptions {
 /** Run the analyzer with given arguments */
 export function main(args: AnalyzerOptions): ActionExport[] {
   setArgs(args);
-  console.log("Discovering files");
+  console.log('Discovering files');
 
   const files: string[] = [];
   function discoverFiles(filePath: string) {
@@ -47,32 +47,29 @@ export function main(args: AnalyzerOptions): ActionExport[] {
       fs.readdirSync(filePath).forEach(childItemName => {
         discoverFiles(path.join(filePath, childItemName));
       });
-    } else if (endsWith(filePath, ".ts")) {
+    } else if (endsWith(filePath, '.ts')) {
       files.push(path.resolve(filePath));
     }
   }
   discoverFiles(args.folder);
   const host = ts.createCompilerHost({});
-  const moduleKind = args.classic
-    ? ts.ModuleResolutionKind.Classic
-    : ts.ModuleResolutionKind.NodeJs;
+  const moduleKind = args.classic ? ts.ModuleResolutionKind.Classic :
+                                    ts.ModuleResolutionKind.NodeJs;
   console.log(
-    `Resolving modules using: ${ts.ModuleResolutionKind[moduleKind]}`
-  );
+      `Resolving modules using: ${ts.ModuleResolutionKind[moduleKind]}`);
   const program = ts.createProgram(
-    files,
-    {
-      target: ts.ScriptTarget.Latest,
-      module: ts.ModuleKind.CommonJS,
-      moduleResolution: moduleKind
-    },
-    host
-  );
+      files, {
+        target: ts.ScriptTarget.Latest,
+        module: ts.ModuleKind.CommonJS,
+        moduleResolution: moduleKind
+      },
+      host);
   const actionRegex = new RegExp(args.actions);
-  const actions = program
-    .getSourceFiles()
-    .map(f => f.fileName)
-    .filter(f => !args.actions || (f.match(actionRegex) || []).length !== 0);
+  const actions =
+      program.getSourceFiles()
+          .map(f => f.fileName)
+          .filter(
+              f => !args.actions || (f.match(actionRegex) || []).length !== 0);
   const analyzer = new ProjectAnalyzer(program, actions);
   analyzer.processActions();
 
@@ -92,19 +89,18 @@ export function main(args: AnalyzerOptions): ActionExport[] {
 }
 
 if (process.mainModule === module) {
-  commander
-    .version("1.0.0")
-    .usage("[options] <folder>")
-    .option("-c, --classic", "use classic module resolution instead of node")
-    .option("-e, --empty-ref", "output references without any usages")
-    .option("-s, --save <file>", "save results to a file")
-    .option("-r, --remove <regex>", "erase part of file path with regex")
-    .option("-a, --actions <regex>", "filter action files with regex")
-    .option("-x, --exclude <regex>", "exclude files from analysis with regex")
-    .parse(process.argv);
+  commander.version('1.0.0')
+      .usage('[options] <folder>')
+      .option('-c, --classic', 'use classic module resolution instead of node')
+      .option('-e, --empty-ref', 'output references without any usages')
+      .option('-s, --save <file>', 'save results to a file')
+      .option('-r, --remove <regex>', 'erase part of file path with regex')
+      .option('-a, --actions <regex>', 'filter action files with regex')
+      .option('-x, --exclude <regex>', 'exclude files from analysis with regex')
+      .parse(process.argv);
 
   if (!commander.args[0]) {
-    console.log("Please specify a folder. Use -h for help.");
+    console.log('Please specify a folder. Use -h for help.');
     process.exit();
   }
 

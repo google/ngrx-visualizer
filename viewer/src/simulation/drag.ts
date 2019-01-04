@@ -16,10 +16,10 @@
 
 /** Node dragging events */
 
-import * as d3 from "d3";
-import { LinkStatus, Node } from "../common/types";
-import { updateD3SimData } from "./internal";
-import { Simulation } from "./simulation";
+import * as d3 from 'd3';
+import {LinkStatus, Node} from '../common/types';
+import {updateD3SimData} from './internal';
+import {Simulation} from './simulation';
 
 /** When a node is dragged, update link colors and load node details */
 export function dragStart(sim: Simulation, d: Node) {
@@ -42,12 +42,9 @@ export function dragStart(sim: Simulation, d: Node) {
 
   updateD3SimData(sim);
   sim.ui.details.loadDetails(
-    sim,
-    d,
-    sim.graph,
-    sim.ui.settings.displayModeSelect.value === "splitreducers",
-    sim.originalGraph
-  );
+      sim, d, sim.graph,
+      sim.ui.settings.displayModeSelect.value === 'splitreducers',
+      sim.originalGraph);
   sim.ui.bottombar.setVisible(true);
 }
 

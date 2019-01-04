@@ -14,65 +14,66 @@
  * limitations under the License.
  */
 
-import { NgrxGraph } from "../ngrx_graph";
+import {NgrxGraph} from '../ngrx_graph';
 
-import { LiteEvent } from "./lite_event";
-import { SidebarUI } from "./sidebar";
+import {LiteEvent} from './lite_event';
+import {SidebarUI} from './sidebar';
 
 /** Controls which nodes are visible */
 export class VisibilityUI {
   sidebarButton: HTMLElement;
   content: HTMLElement;
 
-  onChange = new LiteEvent<{ [key: string]: boolean }>();
+  onChange = new LiteEvent<{[key: string]: boolean}>();
 
   constructor(
-    private readonly documentRef: HTMLDocument,
-    private readonly sidebar: SidebarUI
-  ) {
-    this.sidebarButton = this.documentRef.getElementById(
-      "sidebar-visibility-button"
-    );
-    this.content = this.documentRef.getElementById("visibility-content");
+      private readonly documentRef: HTMLDocument,
+      private readonly sidebar: SidebarUI) {
+    this.sidebarButton =
+        this.documentRef.getElementById('sidebar-visibility-button');
+    this.content = this.documentRef.getElementById('visibility-content');
 
     this.initElements();
   }
 
   /** Get a dictionary of node id -> visible? */
-  getVisibility(): { [key: string]: boolean } {
-    const actions = this.content.getElementsByTagName("input");
-    const result: { [key: string]: boolean } = {};
+  getVisibility(): {[key: string]: boolean} {
+    const actions = this.content.getElementsByTagName('input');
+    const result: {[key: string]: boolean} = {};
     for (let i = 0; i < actions.length; i++) {
       const action = actions[i];
-      if (action.id.indexOf("visibility-entry-") === 0) {
-        result[action.id.slice("visibility-entry-".length)] = action.checked;
+      if (action.id.indexOf('visibility-entry-') === 0) {
+        result[action.id.slice('visibility-entry-'.length)] = action.checked;
       }
     }
     return result;
   }
 
-  /** Sets the content of the visibility sidebar (converts object to checkbox tree) */
+  /**
+   * Sets the content of the visibility sidebar (converts object to checkbox
+   * tree)
+   */
   setContent(content: any, graph: NgrxGraph) {
-    this.content.innerHTML = "";
+    this.content.innerHTML = '';
     const margin = 5;
     let nonNodeIDCtr = 0;
     const recurse = (obj: any) => {
-      const container = this.documentRef.createElement("div");
+      const container = this.documentRef.createElement('div');
       container.style.marginLeft = `${margin}px`;
       for (const key of Object.keys(obj)) {
-        const checkboxContainer = this.documentRef.createElement("div");
-        checkboxContainer.style.whiteSpace = "nowrap";
-        const dropdownButton = this.documentRef.createElement("div");
-        dropdownButton.innerHTML = "&#9662;";
-        dropdownButton.classList.add("visibility-entry-toggle-button");
-        dropdownButton.classList.add("noselect");
+        const checkboxContainer = this.documentRef.createElement('div');
+        checkboxContainer.style.whiteSpace = 'nowrap';
+        const dropdownButton = this.documentRef.createElement('div');
+        dropdownButton.innerHTML = '&#9662;';
+        dropdownButton.classList.add('visibility-entry-toggle-button');
+        dropdownButton.classList.add('noselect');
         checkboxContainer.appendChild(dropdownButton);
-        const checkbox = this.documentRef.createElement("input");
-        checkbox.type = "checkbox";
+        const checkbox = this.documentRef.createElement('input');
+        checkbox.type = 'checkbox';
         checkbox.checked = true;
-        const label = this.documentRef.createElement("label");
+        const label = this.documentRef.createElement('label');
         label.textContent = key;
-        if (typeof obj[key] === "string") {
+        if (typeof obj[key] === 'string') {
           label.textContent = graph.getNodeFromID(obj[key]).name;
           checkbox.id = `visibility-entry-${obj[key]}`;
         } else {
@@ -82,11 +83,11 @@ export class VisibilityUI {
         checkboxContainer.appendChild(checkbox);
         checkboxContainer.appendChild(label);
         container.appendChild(checkboxContainer);
-        if (typeof obj[key] !== "string") {
+        if (typeof obj[key] !== 'string') {
           const subTree = recurse(obj[key]);
           checkboxContainer.appendChild(subTree);
-          checkbox.addEventListener("click", () => {
-            const subBoxes = subTree.getElementsByTagName("input");
+          checkbox.addEventListener('click', () => {
+            const subBoxes = subTree.getElementsByTagName('input');
             for (let i = 0; i < subBoxes.length; i++) {
               subBoxes[i].checked = checkbox.checked;
               subBoxes[i].indeterminate = false;
@@ -96,26 +97,24 @@ export class VisibilityUI {
           });
 
           const toggleDropDown = () => {
-            if (subTree.style.display === "none") {
-              subTree.style.display = "block";
+            if (subTree.style.display === 'none') {
+              subTree.style.display = 'block';
             } else {
-              subTree.style.display = "none";
+              subTree.style.display = 'none';
             }
-            dropdownButton.classList.toggle("rotated");
+            dropdownButton.classList.toggle('rotated');
           };
 
-          dropdownButton.addEventListener("click", toggleDropDown);
+          dropdownButton.addEventListener('click', toggleDropDown);
 
-          if (
-            typeof obj[key][Object.keys(obj[key])[0]] === "string" ||
-            Object.keys(obj[key])[0] === "actions.ts"
-          ) {
+          if (typeof obj[key][Object.keys(obj[key])[0]] === 'string' ||
+              Object.keys(obj[key])[0] === 'actions.ts') {
             toggleDropDown();
           }
         } else {
           // Maintain padding but hidden
-          dropdownButton.style.visibility = "hidden";
-          checkbox.addEventListener("click", () => {
+          dropdownButton.style.visibility = 'hidden';
+          checkbox.addEventListener('click', () => {
             this.onChange.trigger(this.getVisibility());
             this.bubbleCheckboxState(container.parentElement);
           });
@@ -128,7 +127,7 @@ export class VisibilityUI {
 
   /** Hide all nodes */
   hideAll() {
-    const subBoxes = this.content.getElementsByTagName("input");
+    const subBoxes = this.content.getElementsByTagName('input');
     for (let i = 0; i < subBoxes.length; i++) {
       subBoxes[i].checked = false;
       subBoxes[i].indeterminate = false;
@@ -138,8 +137,8 @@ export class VisibilityUI {
 
   /** Turn on the checkbox of a specific path */
   showPath(pathInput: string): boolean {
-    const path = pathInput.split("/");
-    if (path[path.length - 1] === "") {
+    const path = pathInput.split('/');
+    if (path[path.length - 1] === '') {
       path.pop();
     }
     let current = this.content;
@@ -169,8 +168,8 @@ export class VisibilityUI {
   }
 
   private initElements() {
-    this.sidebarButton.addEventListener("click", () => {
-      this.sidebar.setContent("sidebar-visibility", true);
+    this.sidebarButton.addEventListener('click', () => {
+      this.sidebar.setContent('sidebar-visibility', true);
     });
   }
 
