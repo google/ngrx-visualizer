@@ -15,7 +15,7 @@
   "author": "Google LLC",
   "license": "Apache-2.0",
   "dependencies": {
-    "d3": "^5.5.0",
+    "d3": "^7.6.1",
     "fuse-js-latest": "^3.1.0",
     "ts-node": "^7.0.1"
   },
